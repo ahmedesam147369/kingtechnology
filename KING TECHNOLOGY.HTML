@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحمد عصام و منصة KING TECHNOLOGY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a237e; /* Indigo deeper */
+            --secondary-color: #007bff; /* Bright Blue */
+            --accent-color: #ffc107; /* Amber */
+            --light-color: #f8f9fa; /* Off-white */
+            --dark-color: #212529; /* Dark grey */
+            --gold-color: #ffd700; /* Gold for highlights */
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --text-color: #343a40;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color) 70%);
+            color: white;
+            padding: 4rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        header::before, header::after {
+            content: "";
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 10s infinite ease-in-out;
+        }
+        header::before { width: 200px; height: 200px; top: 10%; left: 5%; }
+        header::after { width: 150px; height: 150px; bottom: 15%; right: 10%; animation-delay: -5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .profile-img {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            border: 7px solid var(--accent-color);
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            position: relative; z-index: 1;
+        }
+        .profile-img:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 12px 30px rgba(var(--accent-color), 0.5); }
+
+        h1 { font-size: 3rem; margin-bottom: 0.75rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); position: relative; z-index: 1; }
+        .tagline { font-size: 1.4rem; opacity: 0.9; margin-bottom: 2rem; font-weight: 500; position: relative; z-index: 1; }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky; top: 0; z-index: 1000; padding: 0.5rem 0;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); text-decoration: none; display: flex; align-items: center; transition: transform var(--transition-speed) ease; }
+        .logo:hover { transform: scale(1.05); }
+        .logo i { margin-left: 0.75rem; color: var(--secondary-color); animation: spinCrown 5s infinite linear; }
+        @keyframes spinCrown { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-right: 1.5rem; } /* Adjusted spacing */
+        .nav-links li:last-child { margin-right: 0; }
+        .nav-links a {
+            text-decoration: none; color: var(--dark-color); font-weight: 500;
+            padding: 0.5rem 0.25rem; position: relative; transition: color var(--transition-speed) ease;
+            font-size: 0.95rem; /* Slightly smaller for more links */
+        }
+        .nav-links a::after {
+            content: ""; position: absolute; bottom: -2px; left: 0; width: 0; height: 3px;
+            background-color: var(--accent-color); transition: width var(--transition-speed) ease; border-radius: 2px;
+        }
+        .nav-links a:hover, .nav-links a.active-link { color: var(--secondary-color); }
+        .nav-links a:hover::after, .nav-links a.active-link::after { width: 100%; }
+
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 2rem; color: var(--dark-color); cursor: pointer; }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0; opacity: 0; transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        section.visible { opacity: 1; transform: translateY(0); }
+        section:nth-child(even) { background-color: #fdfdfd; }
+
+        .section-title { text-align: center; margin-bottom: 4rem; position: relative; }
+        .section-title h2 {
+            font-size: 2.5rem; color: var(--primary-color); display: inline-block;
+            padding-bottom: 1rem; position: relative; font-weight: 700;
+        }
+        .section-title h2::before {
+            content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 4px; background-color: var(--accent-color); border-radius: 2px;
+        }
+        .section-title h2::after {
+            content: "..."; position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%);
+            font-size: 1.5rem; color: var(--secondary-color); opacity: 0.5;
+        }
+
+        /* About Section */
+        .about-content { display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-text p { margin-bottom: 1.5rem; text-align: justify; font-size: 1.1rem; line-height: 1.9; }
+        .about-image { flex: 0 0 400px; min-width: 300px; text-align: center; }
+        .about-image img {
+            max-width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+        .about-image img:hover { transform: scale(1.03) rotate(-2deg); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+
+        /* Logos Section */
+        .logos-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
+        .logo-item {
+            background-color: white; text-align: center; padding: 2rem; border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow); transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+        .logo-item:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 15px 30px rgba(var(--secondary-color), 0.2); }
+        .logo-item img {
+            width: 180px; height: 180px; object-fit: contain; margin-bottom: 1.5rem;
+            border-radius: 8px; background-color: var(--light-color); padding: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .logo-item h3 { color: var(--primary-color); font-size: 1.6rem; font-weight: 500; }
+
+        /* Services & Products Section - Tag Cloud Style */
+        .tags-container { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; padding: 1rem 0; }
+        .tag {
+            background-color: rgba(var(--secondary-color), 0.1); color: var(--secondary-color);
+            padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 1rem; font-weight: 500;
+            transition: all var(--transition-speed) ease; border: 2px solid transparent;
+        }
+        .tag:hover {
+            background-color: var(--secondary-color); color: white; transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(var(--secondary-color), 0.3); border-color: var(--accent-color);
+        }
+
+        /* Bots Section */
+        .bots-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
+        .bot-card {
+            background-color: white; border-radius: var(--border-radius); padding: 2rem; box-shadow: var(--box-shadow);
+            transition: all var(--transition-speed) ease; display: flex; flex-direction: column;
+            justify-content: space-between; overflow: hidden; position: relative;
+        }
+        .bot-card::before {
+            content: ""; position: absolute; top: -50px; right: -50px; width: 100px; height: 100px;
+            background-color: rgba(var(--accent-color), 0.1); border-radius: 50%; transition: transform var(--transition-speed) ease;
+        }
+        .bot-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); }
+        .bot-card:hover::before { transform: scale(1.5); }
+        .bot-card h3 {
+            color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center;
+            font-size: 1.5rem; font-weight: 700; z-index: 1;
+        }
+        .bot-card h3 i { margin-left: 0.75rem; color: var(--secondary-color); font-size: 1.8rem; transition: transform var(--transition-speed) ease; }
+        .bot-card:hover h3 i { transform: rotate(15deg) scale(1.1); }
+        .bot-link {
+            display: inline-block; background-color: var(--secondary-color); color: white; padding: 0.75rem 1.5rem;
+            border-radius: 50px; text-decoration: none; font-size: 1rem; font-weight: 500;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+            text-align: center; margin-top: 1rem; z-index: 1; align-self: center;
+        }
+        .bot-link:hover { background-color: var(--primary-color); transform: scale(1.05); }
+
+        /* Contact Section */
+        .contact-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .contact-card {
+            background-color: white; border-radius: var(--border-radius); padding: 2.5rem 1.5rem; text-align: center;
+            box-shadow: var(--box-shadow); transition: all var(--transition-speed) ease; position: relative; overflow: hidden;
+        }
+        .contact-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 15px 30px rgba(var(--primary-color), 0.15); }
+        .contact-icon {
+            font-size: 3rem; color: var(--secondary-color); margin-bottom: 1.5rem;
+            transition: transform var(--transition-speed) ease; display: inline-block;
+        }
+        .contact-card:hover .contact-icon { transform: scale(1.2) rotate(10deg); color: var(--accent-color); }
+        .contact-card h3 { margin-bottom: 0.75rem; color: var(--primary-color); font-size: 1.4rem; font-weight: 700; }
+        .contact-card p { font-size: 1rem; color: var(--text-color); margin-bottom: 0.5rem; }
+        .contact-link {
+            display: block; /* Make links take full width for easier clicking */
+            margin-top: 0.5rem; color: var(--secondary-color); text-decoration: none; font-weight: 500;
+            transition: color var(--transition-speed) ease, letter-spacing var(--transition-speed) ease; font-size: 1rem;
+        }
+        .contact-link:hover { color: var(--accent-color); text-decoration: underline; letter-spacing: 0.5px; }
+        
+        /* KING TECHNOLOGY Platform Section Styles */
+        #king-technology-platform {
+            background-color: #eef2f9; /* A slightly different background for distinction */
+        }
+        .platform-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .platform-services-grid details {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+            transition: box-shadow var(--transition-speed) ease;
+        }
+        .platform-services-grid details:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .platform-services-grid details[open] summary {
+            background-color: rgba(var(--primary-color), 0.1);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        .platform-services-grid summary {
+            padding: 1.25rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            list-style: none; /* Remove default marker */
+            position: relative;
+            transition: background-color var(--transition-speed) ease;
+            border-radius: var(--border-radius);
+        }
+        .platform-services-grid summary::-webkit-details-marker { display: none; } /* Hide default marker for Webkit */
+        .platform-services-grid summary::after { /* Custom marker */
+            content: '\f078'; /* FontAwesome down arrow */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 20px; /* Adjusted for RTL */
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform var(--transition-speed) ease;
+            color: var(--secondary-color);
+        }
+        .platform-services-grid details[open] summary::after {
+            transform: translateY(-50%) rotate(-180deg); /* Rotate arrow when open */
+        }
+        .platform-service-content {
+            padding: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: justify;
+            border-top: 1px solid #eee;
+        }
+        .platform-service-content p {
+            margin-bottom: 1rem;
+        }
+        .platform-service-content .section-link {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: var(--success-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+        }
+        .platform-service-content .section-link:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color); color: var(--light-color);
+            padding: 4rem 0 2rem; text-align: center; margin-top: 3rem;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+        }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; padding-top: 3rem; }
+        .footer-section { text-align: right; }
+        .footer-section:first-child { text-align: center; }
+        @media (min-width: 768px) { .footer-section:first-child { text-align: right; } }
+        .footer-section h3 {
+            margin-bottom: 1.5rem; position: relative; display: inline-block;
+            font-size: 1.5rem; color: var(--accent-color);
+        }
+        .footer-section h3::after {
+            content: ""; position: absolute; bottom: -8px; right: 0; width: 60px; height: 3px;
+            background-color: var(--gold-color); border-radius: 2px;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: #ccc; text-decoration: none; transition: color var(--transition-speed) ease, padding-right var(--transition-speed) ease; }
+        .footer-links a:hover { color: var(--gold-color); padding-right: 5px; }
+        .footer-section p, .footer-section li { font-size: 1rem; }
+        .footer-section i { margin-left: 0.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+        .social-link {
+            display: flex; align-items: center; justify-content: center; width: 45px; height: 45px;
+            border-radius: 50%; background-color: rgba(255, 255, 255, 0.1); color: white;
+            font-size: 1.4rem; transition: all var(--transition-speed) ease;
+        }
+        .social-link:hover { background-color: var(--secondary-color); transform: translateY(-5px) scale(1.1); color: var(--accent-color); }
+        .copyright { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 1rem; opacity: 0.8; }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed; bottom: 30px; left: 30px; width: 55px; height: 55px;
+            background-color: var(--secondary-color); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+            cursor: pointer; opacity: 0; visibility: hidden; transition: all var(--transition-speed) ease;
+            z-index: 999; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); border: 2px solid var(--accent-color);
+        }
+        .back-to-top.active { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background-color: var(--primary-color); transform: translateY(-5px) scale(1.1); }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-container { position: relative; }
+            .mobile-menu-btn { display: block; position: absolute; top: 50%; left: 20px; transform: translateY(-50%); }
+            .logo { margin-right: auto; }
+            .nav-links {
+                display: none; flex-direction: column; width: 100%; background-color: white;
+                position: absolute; top: 100%; right: 0; left: 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                padding: 1rem 0; border-top: 1px solid #eee;
+            }
+            .nav-links.active { display: flex; animation: slideDown 0.5s ease forwards; }
+            @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+            .nav-links li { margin: 0; width: 100%; text-align: center; }
+            .nav-links a { display: block; padding: 1rem; border-bottom: 1px solid #f0f0f0; }
+            .nav-links a:hover, .nav-links a.active-link { background-color: rgba(var(--secondary-color), 0.05); }
+            .nav-links a::after { display: none; }
+            .nav-links li:last-child a { border-bottom: none; }
+            h1 { font-size: 2.5rem; } .tagline { font-size: 1.2rem; } .section-title h2 { font-size: 2rem; }
+            .about-image { flex: 1 1 100%; margin-top: 2rem; }
+        }
+        @media (max-width: 768px) {
+            .container { width: 95%; }
+            .footer-content { grid-template-columns: 1fr; }
+            .footer-section, .footer-section:first-child { text-align: center; }
+            .footer-section h3::after { right: 50%; transform: translateX(50%);}
+            .nav-links li { margin-right: 1rem; } /* Reduce spacing further */
+            .nav-links a { font-size: 0.9rem; }
+        }
+
+        /* Utility Classes for JS animations */
+        .animate-on-scroll { opacity: 0; transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .animate-on-scroll.fade-in { transform: translateY(30px); }
+        .animate-on-scroll.slide-in-right { transform: translateX(-50px); }
+        .animate-on-scroll.slide-in-left { transform: translateX(50px); }
+        .animate-on-scroll.zoom-in { transform: scale(0.9); }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--light-color); }
+        ::-webkit-scrollbar-thumb { background: var(--secondary-color); border-radius: 10px; border: 2px solid var(--light-color); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="https://www2.0zz0.com/2025/05/06/20/600899070.jpg" alt="أحمد عصام" class="profile-img">
+            <h1>أحمد عصام منصف إسماعيل أحمد حماد</h1>
+            <p class="tagline">رائد التكنولوجيا الصاعد والمبتكر الطموح</p>
+        </div>
+    </header>
+
+    <nav id="main-nav">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span>KING TECHNOLOGY</span>
+                <i class="fas fa-crown"></i>
+            </a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">من أنا</a></li>
+                <li><a href="#logos">الشعارات</a></li>
+                <li><a href="#services">خدماتي</a></li>
+                <li><a href="#products">منتجاتي</a></li>
+                <li><a href="#bots">بوتاتي</a></li>
+                <li><a href="#contact">تواصل معي</a></li>
+                <li><a href="#king-technology-platform">منصة KING TECHNOLOGY</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>من أنا</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll slide-in-right">
+                    <p>أحمد عصام منصف إسماعيل أحمد حماد، شاب مصري يبلغ من العمر 13 عامًا، نشأ في قرية محلة موسى بمحافظة كفر الشيخ، حيث استوحى شغفه بالتكنولوجيا من البيئة المحيطة به وإمكانياته اللامحدودة. رغم صغر سنه، استطاع أن يكون نموذجًا يُحتذى به في مجال الابتكار، والبرمجة، وريادة الأعمال. لم يكن مجرد مستخدم للتكنولوجيا، بل سعى إلى تطويرها، وتقديم الحلول التقنية التي تلبي احتياجات الأفراد والشركات على حد سواء.</p>
+                    <p>منذ نعومة أظافره، أظهر أحمد اهتمامًا غير عادي بالتكنولوجيا والبرمجة، حيث لم يكن يكتفي فقط باستخدام الأجهزة والتطبيقات، بل كان يسعى لفهم كيفية عملها من الداخل. بدأ رحلته في عالم البرمجة بكتابة الأكواد البسيطة، ثم تطور إلى تصميم المواقع الإلكترونية والتطبيقات، مما مهد له الطريق لإنشاء مشروعه الخاص الذي حمل اسم "KING TECHNOLOGY".</p>
+                    <p>كانت رؤيته واضحة منذ البداية: بناء علامة تجارية تقنية عالمية تقدم حلولًا مبتكرة في مجالات متعددة تشمل البرمجة، تطوير البرمجيات، الذكاء الاصطناعي، الأمن السيبراني، تصميم الجرافيك، بالإضافة إلى الأقمار الصناعية وتقنيات الفضاء. لم يكن طموحه محدودًا بإحداث تأثير محلي فقط، بل سعى دائمًا لتقديم تقنيات تغير العالم بأسره.</p>
+                </div>
+                <div class="about-image animate-on-scroll slide-in-left">
+                    <img src="https://www2.0zz0.com/2025/05/07/06/261150956.jpg" alt="أحمد عصام يتأمل المستقبل">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="logos">
+        <div class="container">
+            <div class="section-title">
+                <h2>الشعارات</h2>
+            </div>
+            <div class="logos-container">
+                <div class="logo-item animate-on-scroll zoom-in">
+                    <img src="https://www2.0zz0.com/2025/05/06/20/600899070.jpg" alt="AHMED ESAM">
+                    <h3>AHMED ESAM</h3>
+                </div>
+                <div class="logo-item animate-on-scroll zoom-in" style="animation-delay: 0.2s;">
+                    <img src="https://www2.0zz0.com/2025/05/06/20/759368943.jpg" alt="KING TECHNOLOGY">
+                    <h3>KING TECHNOLOGY</h3>
+                </div>
+                <div class="logo-item animate-on-scroll zoom-in" style="animation-delay: 0.4s;">
+                    <img src="https://www2.0zz0.com/2025/05/06/20/304961695.jpg" alt="CONNICT INTERNATIONAL WORLD">
+                    <h3>CONNICT INTERNATIONAL WORLD</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتي (أحمد عصام)</h2>
+            </div>
+            <div class="tags-container">
+                <span class="tag animate-on-scroll fade-in">هكر</span> <span class="tag animate-on-scroll fade-in">برمجة</span> <span class="tag animate-on-scroll fade-in">هندسة شبكات</span> <span class="tag animate-on-scroll fade-in">تحليل بيانات</span> <span class="tag animate-on-scroll fade-in">تكنولوجيا مالية</span> <span class="tag animate-on-scroll fade-in">خدمات بنكية</span> <span class="tag animate-on-scroll fade-in">دفع إلكتروني</span> <span class="tag animate-on-scroll fade-in">إتصالات</span> <span class="tag animate-on-scroll fade-in">إلكترونيات</span> <span class="tag animate-on-scroll fade-in">إدارة أعمال</span> <span class="tag animate-on-scroll fade-in">تحول رقمي</span> <span class="tag animate-on-scroll fade-in">خدمة عملاء</span> <span class="tag animate-on-scroll fade-in">ذكاء إصطناعي</span> <span class="tag animate-on-scroll fade-in">تكنولوجيا المعلومات</span> <span class="tag animate-on-scroll fade-in">زراعة</span> <span class="tag animate-on-scroll fade-in">تصميم الجرافيك</span> <span class="tag animate-on-scroll fade-in">فوتوشوب</span> <span class="tag animate-on-scroll fade-in">صناعة</span> <span class="tag animate-on-scroll fade-in">تجارة</span> <span class="tag animate-on-scroll fade-in">سياحة</span> <span class="tag animate-on-scroll fade-in">خدمات عامة</span> <span class="tag animate-on-scroll fade-in">خدمات حكومية</span> <span class="tag animate-on-scroll fade-in">خدمات الفيزا والماكينة</span> <span class="tag animate-on-scroll fade-in">خدمات الإتصالات</span> <span class="tag animate-on-scroll fade-in">خدمات AI</span> <span class="tag animate-on-scroll fade-in">خدمات النيابة</span> <span class="tag animate-on-scroll fade-in">خدمات الخطوط</span> <span class="tag animate-on-scroll fade-in">خدمات الكاش</span> <span class="tag animate-on-scroll fade-in">خدمات مالية وغير مالية</span> <span class="tag animate-on-scroll fade-in">خدمات لك أنت</span> <span class="tag animate-on-scroll fade-in">خدمات CONNICT</span> <span class="tag animate-on-scroll fade-in">خدمات إضافية</span> <span class="tag animate-on-scroll fade-in">خدمات Plus</span> <span class="tag animate-on-scroll fade-in">خدمات العميل</span> <span class="tag animate-on-scroll fade-in">خدمات Premium</span> <span class="tag animate-on-scroll fade-in">خدمات السوشيال ميديا</span> <span class="tag animate-on-scroll fade-in">خدمات تعليمية</span> <span class="tag animate-on-scroll fade-in">الأنشطة والخدمات</span> <span class="tag animate-on-scroll fade-in">أكثر بكثير</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>منتجاتي (أحمد عصام)</h2>
+            </div>
+            <div class="tags-container">
+                <span class="tag animate-on-scroll fade-in">التغليف والطباعة</span> <span class="tag animate-on-scroll fade-in">الهدايا والمصروفات اليدوية</span> <span class="tag animate-on-scroll fade-in">الإلكترونيات الإستهلاكية</span> <span class="tag animate-on-scroll fade-in">المركبات والنقل</span> <span class="tag animate-on-scroll fade-in">المواد الكيميائية</span> <span class="tag animate-on-scroll fade-in">البناء وآلات البناء</span> <span class="tag animate-on-scroll fade-in">الأدوات والمعدات</span> <span class="tag animate-on-scroll fade-in">المكونات الإلكترونية</span> <span class="tag animate-on-scroll fade-in">الرياضة والترفيه</span> <span class="tag animate-on-scroll fade-in">قطع غيار المركبات و إكسسواراتها</span>  <span class="tag animate-on-scroll fade-in">معدات الخدمات التجارية</span> <span class="tag animate-on-scroll fade-in">المنزل والحديقة</span> <span class="tag animate-on-scroll fade-in">الأجهزة المنزلية</span> <span class="tag animate-on-scroll fade-in">الأقمشة والمواد الخاص النسيجية</span> <span class="tag animate-on-scroll fade-in">أطعمة ومشروبات</span> <span class="tag animate-on-scroll fade-in">أجهزة ومستلزمات طبية</span> <span class="tag animate-on-scroll fade-in">الجمال</span> <span class="tag animate-on-scroll fade-in">الآلات الصناعية</span> <span class="tag animate-on-scroll fade-in">الأم،الأطفال واللعب</span> <span class="tag animate-on-scroll fade-in">الساعات والمجوهرات والذهب</span> <span class="tag animate-on-scroll fade-in">الآثاث</span> <span class="tag animate-on-scroll fade-in">الأمتعة والحقائب والشنط</span> <span class="tag animate-on-scroll fade-in">الإنشاءات والعقارات</span> <span class="tag animate-on-scroll fade-in">الرعاية الشخصية والتنظيف المنزلي</span> <span class="tag animate-on-scroll fade-in">إكسسوارات السيارات</span> <span class="tag animate-on-scroll fade-in">المصابيح و الإضاءة</span> <span class="tag animate-on-scroll fade-in">الرعاية الصحية</span> <span class="tag animate-on-scroll fade-in">الطاقة المتجددة</span> <span class="tag animate-on-scroll fade-in">المعدات والمستلزمات</span> <span class="tag animate-on-scroll fade-in">المستلزمات المكتبية والمدرسية</span> <span class="tag animate-on-scroll fade-in">مستلزمات الحيوانات الأليفة</span> <span class="tag animate-on-scroll fade-in">الأمن</span> <span class="tag animate-on-scroll fade-in">معدات وأدوات الإختبار</span> <span class="tag animate-on-scroll fade-in">السلامة</span> <span class="tag animate-on-scroll fade-in">المعادن والسبائك</span> <span class="tag animate-on-scroll fade-in">المطاط والبلاستيك</span> <span class="tag animate-on-scroll fade-in">مناولة المواد</span> <span class="tag animate-on-scroll fade-in">نقل الطاقة</span> <span class="tag animate-on-scroll fade-in">خدمات الأعمال</span> <span class="tag animate-on-scroll fade-in">خدمات التصنيع</span> <span class="tag animate-on-scroll fade-in">الزراعة</span> <span class="tag animate-on-scroll fade-in">البيئة</span> <span class="tag animate-on-scroll fade-in">الحديد والأخشاب</span> <span class="tag animate-on-scroll fade-in">خطوط</span> <span class="tag animate-on-scroll fade-in">رواتر</span> <span class="tag animate-on-scroll fade-in">فيزات</span> <span class="tag animate-on-scroll fade-in">أجهزة إلكترونية</span> <span class="tag animate-on-scroll fade-in">تليفون أرضي</span> <span class="tag animate-on-scroll fade-in">المطبوعات الورقية</span> <span class="tag animate-on-scroll fade-in">أكثر بكثير</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="bots">
+        <div class="container">
+            <div class="section-title">
+                <h2>بوتاتي وتطبيقاتي (أحمد عصام)</h2>
+            </div>
+            <div class="bots-container">
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوتات ahmedesam</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam1_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت ترجمة</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam2_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت التحدث مع الذكاء الاصطناعي</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam3_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت تحميل من سوشيال ميديا</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam4_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت تحويل الكلمات إلى صور</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam5_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت تواصل</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam6_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت صنع لوجو</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam7_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت ايميل مؤقت</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam8_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت اعلانات</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam9_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت الجني الأزرق</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam10_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت صانع بوتات</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam11_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت تحويل الصور إلى PDF</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam12_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت اهداء الأغاني</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam13_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت صانع كودات جاهزة</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam14_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت المتجر</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam15_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت ادارة حساب</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam16_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت الموافقة على الإنضمام</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam17_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت حساب العمر</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam18_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت تحقق من الوهمي</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam19_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت من زار بروفايلي</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam20_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت حماية القنوات</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam21_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت صنع ملصقات</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam22_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت كتابة حقوق على الصور</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam23_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت تمويل قنوات</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam24_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت إصلاح جودة الصورة</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam25_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت معاني أسماء</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam26_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت سايت</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam27_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت حجره ورقة مقص</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam28_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت زخرفة</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam29_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت التعرف على الموسيقى</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam30_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت صارحني</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam31_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت أوامر</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam32_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت تحويل صوت إلى كتابة</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam33_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت البلورة السحرية</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam34_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت بروكسي</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam35_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت لعبة XO</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam36_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت تحويل صيغ</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam37_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت البصمات</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam38_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت ناسخ الكتابة</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam39_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت لعبة روليت</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://t.me/ahmedesam40_bot" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-telegram"></i> بوت ادارة منشورات القناة</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://poe.com/KINGTECHNOLOGY" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fas fa-robot"></i> تطبيق Poe</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://ciciai.com/bot/mUw0OwEX" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fas fa-robot"></i> تطبيق CiciAI</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://monica.im/share/bot?botId=808yNATK" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fas fa-robot"></i> تطبيق Monica</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://wa.me/ais/1032993055357453?s=5" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-whatsapp"></i> تطبيق WhatsApp (AI)</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://m.me/1434139967970296?is_ai=1" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-facebook-messenger"></i> تطبيق Messenger (AI)</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://aistudio.instagram.com/ai/1032993055357453?utm_source=ai_agent" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fab fa-instagram"></i> تطبيق Instagram (AI)</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://gemini.google.com/gem/9ac6476fa956" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fas fa-brain"></i> تطبيق Gemini</h3></a></div>
+                <div class="bot-card animate-on-scroll zoom-in"><a href="https://you.com/?chatMode=user_mode_d5c26722-2964-4c0f-8f89-6da18b1d55ba" class="bot-link" target="_blank" rel="noopener noreferrer"><h3><i class="fas fa-search"></i> تطبيق You.com</h3></a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>طرق التواصل معي (أحمد عصام)</h2>
+            </div>
+            <div class="contact-methods">
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><h3>الهواتف</h3><p>+201010793073</p><p>+201508959686</p><a href="tel:+201010793073" class="contact-link">اتصل الآن (+2010)</a><a href="tel:+201508959686" class="contact-link">اتصل الآن (+2015)</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-whatsapp"></i></div><h3>واتساب</h3><a href="https://wa.me/201010793073" target="_blank" rel="noopener noreferrer" class="contact-link">واتساب (+2010)</a><a href="https://wa.me/201508959686" target="_blank" rel="noopener noreferrer" class="contact-link">واتساب (+2015)</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-viber"></i></div><h3>فايبر</h3><a href="viber://chat?number=+201010793073" class="contact-link">فايبر (+2010)</a><a href="viber://chat?number=+201508959686" class="contact-link">فايبر (+2015)</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-facebook-messenger"></i></div><h3>ماسنجر</h3><a href="https://m.me/ahmedesam" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر ماسنجر</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-facebook"></i></div><h3>فيسبوك</h3><a href="https://www.facebook.com/share/1AE5UoaFye/" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة صفحة الفيسبوك</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-telegram"></i></div><h3>تيليجرام</h3><a href="https://t.me/201010793073" target="_blank" rel="noopener noreferrer" class="contact-link">تيليجرام (+2010)</a><a href="https://t.me/201508929686" target="_blank" rel="noopener noreferrer" class="contact-link">تيليجرام (+2015)</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fas fa-envelope"></i></div><h3>البريد الإلكتروني</h3><a href="mailto:ahmedesam5177@gmail.com" class="contact-link">ahmedesam5177@gmail.com</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-instagram"></i></div><h3>إنستجرام</h3><a href="https://www.instagram.com/ahmedesam347/profilecard/?igsh=YW9hdXJkNzZlYXQw" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة إنستجرام</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-threads"></i></div><h3>Threads</h3><a href="https://www.threads.net/@ahmedesam137" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة Threads</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-twitter"></i></div><h3>تويتر (X)</h3><a href="https://x.com/AhmedE56810?t=7xT6MiMTylMAbLh7o4TRDg&s=09" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة تويتر</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-snapchat"></i></div><h3>سناب شات</h3><a href="https://www.snapchat.com/add/ahmed_esam24747?share_id=FWJKCPst6Ec&locale=ar-AE" target="_blank" rel="noopener noreferrer" class="contact-link">إضافة سناب شات</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-youtube"></i></div><h3>يوتيوب</h3><a href="https://youtube.com/@ahmedesam-o7v?si=O0llUgx2lDpnv1ZA" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة يوتيوب</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-tiktok"></i></div><h3>تيك توك</h3><a href="https://www.tiktok.com/@ahmedesam6500?_t=8qttAOU2YRp&_r=1" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة تيك توك</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-twitch"></i></div><h3>تويتش</h3><a href="https://www.twitch.tv/ahmedesam_147369" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة تويتش</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-line"></i></div><h3>لاين</h3><a href="https://line.me/ti/p/hueVD57bb_" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر لاين</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-weixin"></i></div><h3>وي شات</h3><a href="https://weixin.qq.com/r/wxid_typbuqje7tmy22" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر وي شات</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-kickstarter-k"></i></div><h3>كيك</h3><a href="https://kik.me/AhmedEsam147369" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر كيك</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-pinterest"></i></div><h3>بنترست</h3><a href="https://pin.it/28ZulJwKY" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة بنترست</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-tumblr"></i></div><h3>تمبلر</h3><a href="https://www.tumblr.com/ahmedesam147369?source=share" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة تمبلر</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fas fa-question-circle"></i></div><h3>Ask.fm</h3><a href="https://app.ask.fm/ahmedesam5177" target="_blank" rel="noopener noreferrer" class="contact-link">اسألني على Ask.fm</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-soundcloud"></i></div><h3>ساوند كلاود</h3><a href="https://on.soundcloud.com/HUqhv" target="_blank" rel="noopener noreferrer" class="contact-link">استمع على ساوند كلاود</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-spotify"></i></div><h3>سبوتيفاي</h3><a href="https://open.spotify.com/user/31bhk2q4ysef4fvpyz6rxaygapgu?si=00oFStSXSfissCSUnc0gyQ" target="_blank" rel="noopener noreferrer" class="contact-link">استمع على سبوتيفاي</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-linkedin"></i></div><h3>لينكد إن</h3><a href="https://www.linkedin.com/in/ahmed-esam-4b859535b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="contact-link">الملف الشخصي على لينكد إن</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-skype"></i></div><h3>سكايب</h3><a href="https://join.skype.com/invite/NF8sA5qNpG5D" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر سكايب</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-github"></i></div><h3>جيت هب</h3><a href="https://github.com/AEK_admin" target="_blank" rel="noopener noreferrer" class="contact-link">الملف الشخصي على جيت هب</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-vk"></i></div><h3>VK</h3><a href="https://vk.com/id861862873" target="_blank" rel="noopener noreferrer" class="contact-link">الملف الشخصي على VK</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fab fa-meta"></i></div><h3>Oculus (Meta)</h3><a href="https://horizon.meta.com/profile/AhmedEsam/?hws=JhpGUVxVM8" target="_blank" rel="noopener noreferrer" class="contact-link">الملف الشخصي على Meta Horizon</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fas fa-globe"></i></div><h3>موقع KING TECHNOLOGY</h3><a href="https://www.socialcreator.com/kingtechnology" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة المنصة</a></div>
+                <div class="contact-card animate-on-scroll fade-in"><div class="contact-icon"><i class="fas fa-mobile-alt"></i></div><h3>التطبيق الرسمي</h3><a href="https://www.appcreator24.com/app3347736-ravs1d" target="_blank" rel="noopener noreferrer" class="contact-link">تحميل التطبيق</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="king-technology-platform">
+        <div class="container">
+            <div class="section-title">
+                <h2>منصة KING TECHNOLOGY للخدمات والمعرفة</h2>
+            </div>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem;">
+                استكشف مجموعة واسعة من الخدمات والأدوات والمعلومات التي تقدمها منصة KING TECHNOLOGY. انقر على عنوان الخدمة لعرض التفاصيل.
+            </p>
+            <div class="platform-services-grid">
+                <details class="animate-on-scroll fade-in"><summary>1. قائمة اللغات</summary><div class="platform-service-content"><p>يقدم قسم "قائمة اللغات" مجموعة واسعة من اللغات العالمية، مما يساعد المستخدمين على اكتشاف اللغات التي يرغبون في تعلمها. يشمل هذا القسم لغات مثل الإنجليزية، الفرنسية، الإسبانية، الصينية، والعربية. كما يوفر معلومات حول خصائص كل لغة، مثل عدد المتحدثين والمناطق الجغرافية. يتيح هذا التنوع للمستخدمين اختيار لغة مناسبة لاحتياجاتهم، سواء كانت للدراسة أو السفر أو العمل، مما يسهم في تعزيز التواصل والفهم الثقافي.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288785" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>2. خريطة العالم</summary><div class="platform-service-content"><p>يقدم قسم "خريطة العالم" خريطة تفاعلية تغطي جميع دول العالم، مما يسهل على المستخدمين التفاعل مع الجغرافيا العالمية. يمكن النقر على الدول للحصول على معلومات مفصلة، بما في ذلك العواصم، المساحات، تعداد السكان، والموارد الطبيعية. بالإضافة إلى ذلك، يوفر القسم معلومات حول المناطق السياحية والمعالم الأثرية. يساعد هذا المستخدمين على اتخاذ قرارات مستنيرة حول وجهاتهم السياحية ويعزز من الوعي الجغرافي والثقافي للعالم.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288786" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>3. دول ومحافظات ومدن وقرى العالم</summary><div class="platform-service-content"><p>يحتوي هذا القسم على معلومات تفصيلية عن الدول، المحافظات، المدن، والقرى. يمكن للمستخدمين معرفة الحقائق التاريخية والثقافية والسياحية حول الأماكن المختلفة، مما يعزز المعرفة الجغرافية والتاريخية. يهدف هذا القسم إلى تمكين المستخدمين من اكتشاف العادات والتقاليد المحلية ويعزز من فهمهم للتنوع الثقافي. كما يقدم نصائح سفر حول المعالم التي يجب زيارتها، مما يسهم في تعزيز التجارب السياحية المميزة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288788" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>4. معلومات دولنا</summary><div class="platform-service-content"><p>يقدم قسم "معلومات دولنا" بيانات شاملة حول دول معينة، مع التركيز على الدول العربية. يشمل ذلك العواصم، السكان، الاقتصاد، والثقافة، بالإضافة إلى معلومات عن الأحداث التاريخية الهامة. يعزز هذا الفهم المتبادل ويشجع على الحوار الثقافي بين المستخدمين. يوفر أيضًا معلومات حول المعالم السياحية الشهيرة والعادات المحلية. يهدف هذا القسم إلى تعزيز الوعي الثقافي والتاريخي ويشجع المستخدمين على استكشاف ثقافات جديدة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288788" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>5. رموز الاتصال الخاصة بالدول</summary><div class="platform-service-content"><p>يوفر قسم "رموز الاتصال الخاصة بالدول" معلومات دقيقة حول رموز الاتصال الدولية لكل دولة. يتيح هذا للمستخدمين سهولة التواصل مع الأصدقاء والعائلة في الخارج، حيث يمكنهم معرفة الرمز الصحيح لكل دولة قبل إجراء المكالمات. يسهم هذا القسم في تحسين تجربة الاتصال بين الأفراد ويعزز من فهم الأنظمة المختلفة للاتصال الدولي. كما يوفر نصائح حول كيفية استخدام رموز الاتصال بفعالية.</p><a href="https://www.socialcreator.com/kingtechnology/?s=307415" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>6. رموز الاتصال الخاصة بالمدن</summary><div class="platform-service-content"><p>يتيح هذا القسم معرفة رموز الاتصال الخاصة بالمدن المختلفة، مما يسهل إجراء المكالمات المحلية والدولية. يوفر معلومات دقيقة حول رموز الاتصال لكل مدينة، مما يعزز تجربة الاتصال بين المدن. يسهم هذا القسم في تمكين المستخدمين من التواصل بكفاءة، حيث يسهل عليهم العثور على الرموز المطلوبة. كما يتضمن نصائح حول كيفية استخدام رموز الاتصال بشكل فعال، مما يعزز من القدرة على الاتصال بين الأفراد.</p><a href="https://www.socialcreator.com/kingtechnology/?s=307416" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>7. رموز الاتصال الخاصة بالمحافظات والتحقق من الرقم</summary><div class="platform-service-content"><p>يتضمن هذا القسم رموز الاتصال الخاصة بالمحافظات مع إمكانية التحقق من أرقام الهواتف. يسهل هذا التواصل بكفاءة من خلال توفير المعلومات اللازمة لإجراء المكالمات المحلية والدولية. يتيح القسم للمستخدمين معرفة الرموز الصحيحة لكل محافظة، مما يعزز من قدرة الأفراد على الاتصال. كما يقدم نصائح حول كيفية التحقق من الأرقام قبل الاتصال، مما يساهم في تحسين تجربة التواصل بشكل عام.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288791" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>8. إحصائيات العالم</summary><div class="platform-service-content"><p>يقدم قسم "إحصائيات العالم" بيانات إحصائية شاملة حول مواضيع عالمية مثل السكان والاقتصاد والبيئة. يهدف هذا القسم إلى إتاحة معلومات قيمة لفهم القضايا العالمية بشكل أفضل. يمكن للمستخدمين الوصول إلى إحصائيات موثوقة تدعم القرارات والتوجهات. كما يتضمن تحليلًا للاتجاهات العالمية، مما يساعد في تعزيز الوعي بالمسائل الحيوية. يسهم هذا في تمكين المستخدمين من فهم العالم بشكل أعمق.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288792" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>9. قسم السفر</summary><div class="platform-service-content"><p>يحتوي قسم "قسم السفر" على معلومات ونصائح للسفر، بما في ذلك أفضل الوجهات، والطقس، والنصائح الثقافية. يهدف هذا القسم إلى مساعدة المستخدمين على التخطيط لرحلاتهم بشكل أكثر فعالية. يقدم نصائح حول كيفية الاستعداد للسفر، والتعامل مع التحديات المحتملة. كما يوفر معلومات عن الأنشطة المتاحة في الوجهات المختلفة. يسهم هذا في تحسين تجربة السفر ويعزز من الفهم الثقافي بين الشعوب.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288793" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>10. أخبار العالم</summary><div class="platform-service-content"><p>يقدم قسم "أخبار العالم" آخر الأخبار والتحديثات من جميع أنحاء العالم، مع التركيز على الأحداث المهمة والتطورات. يعزز هذا من وعي المستخدمين بالقضايا العالمية، حيث يقدم تقارير وتحليلات حول الأحداث الجارية. يمكن للمستخدمين متابعة الأخبار في مجالات مختلفة، مثل السياسة والاقتصاد والثقافة. يهدف القسم إلى تقديم معلومات موثوقة تساعد الأفراد على فهم المشهد العالمي بشكل أفضل.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288794" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>11. خدمات الذكاء الاصطناعي</summary><div class="platform-service-content"><p>يتضمن قسم "خدمات الذكاء الاصطناعي" أدوات ذكية تساعد المستخدمين في الكتابة، التصميم، والتحليل. يسعى هذا القسم إلى تحسين تجربة المستخدمين من خلال توفير أدوات مبتكرة تدعم الإبداع والإنتاجية. يشمل ذلك برامج لتحسين النصوص وتوليد الأفكار. كما يوفر معلومات حول تطبيقات الذكاء الاصطناعي وكيفية استخدامها في مختلف المجالات. يهدف هذا إلى تعزيز الفهم بالتكنولوجيا الحديثة ويشجع على الابتكار.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288795" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>12. بحث</summary><div class="platform-service-content"><p>يوفر قسم "بحث" واجهة سهلة الاستخدام للبحث عن المعلومات داخل التطبيق. يهدف هذا إلى تعزيز كفاءة الوصول إلى البيانات والمحتوى. يمكن للمستخدمين البحث عن موضوعات محددة أو استكشاف مجموعة متنوعة من المحتويات. يسهم هذا في توفير تجربة مستخدم سلسة، حيث يمكن العثور على المعلومات بسرعة وسهولة. يهدف هذا القسم إلى تحسين تنظيم المعلومات وتسهيل الوصول إليها.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288796" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>13. خدمات التصميم</summary><div class="platform-service-content"><p>يقدم قسم "خدمات التصميم" أدوات وموارد لمساعدة المستخدمين في إنشاء تصاميم مبتكرة، مثل الشعارات والبطاقات. يركز هذا القسم على تمكين الأفراد من التعبير عن إبداعهم من خلال التصميم. يوفر مجموعة من الأدوات التفاعلية والدروس التعليمية، مما يساعد المستخدمين على تحسين مهاراتهم. يهدف إلى تشجيع الابتكار والإبداع في التصميم، مما يسهم في تعزيز الهوية البصرية للأفراد والشركات.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288797" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>14. تعليم لغات العالم والترجمة</summary><div class="platform-service-content"><p>يتضمن هذا القسم موارد لتعلم لغات متعددة، بالإضافة إلى أدوات للترجمة. يهدف إلى مساعدة المستخدمين على تحسين مهاراتهم اللغوية. يقدم قسم "تعليم لغات العالم" دروسًا وممارسات تفاعلية لتعزيز التعلم. كما يتضمن أدوات ترجمة فورية لتسهيل التواصل بين اللغات. يسهم هذا في تعزيز الفهم الثقافي ويمكن الأفراد من التواصل بفاعلية مع الناطقين بلغات مختلفة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288798" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>15. ماسح ومنشئ QR Code</summary><div class="platform-service-content"><p>يوفر قسم "ماسح ومنشئ QR Code" إمكانية إنشاء ومسح رموز QR بسهولة. يتضمن هذا القسم أدوات سهلة الاستخدام لإنشاء رموز QR لأغراض متنوعة، مثل مشاركة الروابط والمعلومات. كما يحتوي على ميزة مسح رموز QR الموجودة باستخدام الكاميرا، مما يتيح للمستخدمين الوصول الفوري إلى المحتوى المرتبط. يهدف هذا إلى تعزيز التواصل الفعال وتسهيل الوصول إلى المعلومات بطريقة مبتكرة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288799" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>16. كتب وقصص وروايات العالم</summary><div class="platform-service-content"><p>يحتوي هذا القسم على مجموعة من الكتب والقصص من جميع أنحاء العالم. يهدف قسم "كتب وقصص وروايات العالم" إلى تعزيز الثقافة والمعرفة. يقدم مجموعة متنوعة من الأدب، بما في ذلك الروايات الكلاسيكية والحديثة. يسعى هذا القسم إلى تعزيز حب القراءة، من خلال توفير ملخصات وتوصيات للكتب. يهدف إلى تحفيز النقاشات الثقافية والترويج للأدب كوسيلة لفهم التنوع الثقافي.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288800" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>17. المحتوى المرئي</summary><div class="platform-service-content"><p>يوفر قسم "المحتوى المرئي" مقاطع الفيديو التعليمية والمواد التفاعلية. يهدف هذا القسم إلى تقديم مجموعة متنوعة من مقاطع الفيديو التي تغطي مواضيع متعددة. يتضمن محتوى مرئي غني، مثل الأفلام الوثائقية والمقابلات. كما يوفر للمستخدمين أدوات لتحميل ومشاركة المحتوى، مما يعزز من تجربة التفاعل الاجتماعي. يهدف إلى تحسين الفهم من خلال تقديم المعلومات بصيغ بصرية، مما يسهل على المستخدمين استيعاب المعلومات بشكل أفضل.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288801" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>18. محتوى مرئي للأطفال</summary><div class="platform-service-content"><p>يقدم هذا القسم محتوى مرئي مناسب للأطفال، بما في ذلك الرسوم المتحركة والأفلام التعليمية. يركز قسم "محتوى مرئي للأطفال" على توفير تجربة تعليمية ممتعة للأطفال. يتضمن مجموعة متنوعة من البرامج، مثل القصص التعليمية، والألعاب التفاعلية، والرسوم المتحركة. يهدف إلى دعم التعلم المبكر من خلال توفير محتوى يركز على القيم الإيجابية والمعرفة الأساسية. يشجع على تفاعل الأهل مع الأطفال من خلال أنشطة مشتركة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288802" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>19. المحتوى السمعي</summary><div class="platform-service-content"><p>يوفر قسم "المحتوى السمعي" مجموعة من المواد الصوتية مثل البودكاست والموسيقى. يهدف هذا القسم إلى تزويد المستخدمين بتجربة سمعية غنية تعزز من التعلم والترفيه. يتضمن مجموعة متنوعة من البودكاست التي تغطي مواضيع متعددة مثل الثقافة، والتاريخ، والصحة. كما يقدم موسيقى من فنانين مختلفين، مما يوفر بيئة مثالية للاستماع أثناء التنقل أو عند القيام بالأنشطة اليومية. يساهم هذا القسم في تعزيز الفهم وتوفير محتوى سمعي يساعد المستخدمين على استكشاف موضوعات جديدة بطرق جذابة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288803" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>20. مصمم وخدمات ذكاء اصطناعي أخرى</summary><div class="platform-service-content"><p>يقدم قسم "مصمم" أدوات تصميم مبتكرة تعتمد على الذكاء الاصطناعي. يهدف هذا القسم إلى تمكين المستخدمين من إنتاج تصاميم احترافية بسهولة وسرعة. يتضمن أدوات مثل تصميم الشعارات، وإنشاء البطاقات، وتحرير الصور، مما يسهل على الأفراد والشركات إنشاء محتوى بصري جذاب. كما يوفر مجموعة من الدروس والموارد لتطوير مهارات التصميم. يساهم استخدام تقنيات الذكاء الاصطناعي في تحسين كفاءة العمليات الإبداعية، مما يساعد المستخدمين على تحقيق نتائج مبهرة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308543" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>21. خدمات الكتابة</summary><div class="platform-service-content"><p>يوفر قسم "خدمات الكتابة" أدوات ومصادر لتحسين مهارات الكتابة في مجالات متعددة. يهدف هذا القسم إلى دعم الكتاب من خلال توفير موارد تتعلق بالكتابة الإبداعية، والكتابة الأكاديمية، والمحتوى التسويقي. يتضمن أدوات لتحليل النصوص وتقديم تعليقات بناءً على معايير محددة. كما يقدم نصائح حول تحسين الأسلوب اللغوي والتعبير. يسعى القسم إلى تعزيز قدرات المستخدمين الكتابية وتحفيز الإبداع من خلال تقديم محتوى مخصص ومتخصص في الكتابة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308543" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>22. قسم التسوق</summary><div class="platform-service-content"><p>يتيح قسم "قسم التسوق" للمستخدمين استكشاف المنتجات والخدمات المتاحة للشراء. يهدف هذا القسم إلى تسهيل عملية التسوق من خلال تقديم مجموعة متنوعة من المنتجات في مجالات مختلفة مثل الإلكترونيات، والأزياء، والديكور. يقدم معلومات تفصيلية عن كل منتج، بما في ذلك الأسعار والمواصفات. كما يتضمن تقييمات المستخدمين لمساعدتهم على اتخاذ قرارات مستنيرة. يساهم هذا في تعزيز تجربة التسوق عبر الإنترنت، حيث يمكن للمستخدمين العثور على ما يحتاجونه بسهولة وسرعة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308543" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>23. مكالمات ورسائل دولية</summary><div class="platform-service-content"><p>يقدم قسم "مكالمات ورسائل دولية" معلومات شاملة حول خدمات الاتصال الدولية. يهدف هذا القسم إلى تسهيل التواصل بين الأفراد في مختلف البلدان من خلال تقديم معلومات حول الأسعار والخدمات المتاحة. يوضح كيفية إجراء المكالمات الدولية وإرسال الرسائل، ويقدم نصائح لتجنب التكاليف العالية. كما يتضمن معلومات حول التطبيقات والخدمات التي تتيح مكالمات مجانية أو بأسعار منخفضة. يساهم هذا القسم في تحسين تجربة الاتصال ويعزز من إمكانية التواصل الفعال عبر الحدود.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308543" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>24. قسم المواصلات</summary><div class="platform-service-content"><p>يوفر قسم "المواصلات" معلومات شاملة حول أنظمة النقل والمواصلات حول العالم. يتضمن معلومات حول خطوط الحافلات والقطارات، والطرق الرئيسية، ومواعيد الرحلات. يهدف هذا القسم إلى مساعدة المستخدمين على التنقل داخل المدن والمناطق المختلفة بأفضل الوسائل المتاحة. كما يقدم نصائح حول كيفية استخدام وسائل النقل العامة بشكل فعال. يساهم هذا في تحسين تجربة السفر ويعزز من فهم المستخدمين لأنظمة المواصلات المختلفة حول العالم.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308543" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>25. قسم الطقس وأكثر</summary><div class="platform-service-content"><p>يقدم قسم "الطقس وأكثر" معلومات دقيقة عن حالة الطقس الحالية وتوقعات الأيام المقبلة. يشمل درجات الحرارة وسرعة الرياح، بالإضافة إلى نصائح للمسافرين بناءً على الظروف الجوية. يقدم معلومات عن الظواهر الجوية مثل العواصف والأمطار، وتحذيرات من تغييرات مفاجئة في الطقس. يوفر أيضًا خرائط توضح مناطق السحب والأمطار، مما يساعد المستخدمين في اتخاذ قرارات مستنيرة حول السفر والأنشطة الخارجية. يسعى القسم إلى تعزيز الوعي بالطقس ويساعد الأفراد في التخطيط بشكل أفضل.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308543" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>26. قسم الوقت والتاريخ وأكثر</summary><div class="platform-service-content"><p>يعرض قسم "الوقت والتاريخ وأكثر" التوقيت الحالي في مختلف المناطق والفروق الزمنية. يوفر معلومات تاريخية هامة وأعياد وطنية، بالإضافة إلى إمكانية الوصول إلى تقاويم للأحداث العالمية. يمكن للمستخدمين معرفة تاريخ اليوم وأوقات الشروق والغروب، والمناسبات الدينية. يساهم هذا القسم في تعزيز فهم المستخدمين للوقت وأهميته، كما يساعد في تنظيم الأنشطة والفعاليات بشكل أفضل. يهدف إلى توفير معلومات دقيقة تساعد الأفراد في تنسيق جداولهم بشكل فعال.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308543" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>27. إيميلات</summary><div class="platform-service-content"><p>يقدم قسم "إيميلات" معلومات حول خدمات البريد الإلكتروني الشائعة ويساعد المستخدمين على إنشاء حسابات بريد إلكتروني بفاعلية. يوفر نصائح حول إعداد البريد الإلكتروني، وإدارة الرسائل، وتأمين الحسابات. كما يحتوي على دليل لأفضل الممارسات للتواصل المهني عبر البريد الإلكتروني، مما يعزز من كفاءة التواصل ويضمن الحفاظ على الخصوصية والأمان.</p><a href="https://www.socialcreator.com/kingtechnology/?s=288969" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>28. أرقام الطوارئ</summary><div class="platform-service-content"><p>يوفر قسم "أرقام الطوارئ" معلومات شاملة عن الأرقام الضرورية في الحالات الطارئة، مثل الإسعاف، والشرطة، والدفاع المدني، وغيرها. يهدف هذا القسم إلى تمكين المستخدمين من الوصول السريع إلى الأرقام الضرورية لإنقاذ الأرواح والاستجابة السريعة للطوارئ. يضم أيضًا معلومات حول كيفية التصرف في حالات معينة، مثل الحرائق أو الكوارث الطبيعية. يساهم هذا القسم في تعزيز الوعي لدى الأفراد بكيفية التعامل مع الأزمات، مع توضيح أهمية الاتصال الفوري بالجهات المختصة عند الحاجة. يساعد هذا المحتوى في تحسين السلامة العامة وتقديم الإرشادات الأساسية للمستخدمين.</p><a href="https://www.socialcreator.com/kingtechnology/?s=289606" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>29. shawming</summary><div class="platform-service-content"><p>قسم مختص بتسريب الامتحانات ويُعرف بتوفير نسخ من الاختبارات قبل موعدها الرسمي، مما يُثير جدلًا واسعًا حول تأثيره السلبي على نزاهة العملية التعليمية. يقدم هذا القسم خدمات تشمل نشر الامتحانات لمختلف المراحل التعليمية، بيع الإجابات النموذجية، وتوفير حلول للاختبارات مقابل رسوم مالية. يعتمد على منصات التواصل الاجتماعي أو التطبيقات المشفرة لنشر المحتوى، متجنبًا الرقابة باستخدام تقنيات حديثة. رغم شعبيته بين بعض الطلاب، يُعد هذا النشاط غير قانوني ويضر بمبادئ التعليم العادل، حيث يؤدي إلى الإخلال بمصداقية النظام التعليمي ويُعرّض المشاركين لعواقب قانونية وأخلاقية خطيرة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=301109" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>30. النتائج الدراسية</summary><div class="platform-service-content"><p>قسم النتائج الدراسية يوفر نتائج امتحانات النصف الأول، النصف الثاني، والدور الثاني للمدارس الإبتدائية، الإعدادية، الثانوية، الدبلومات، والأزهرية في جميع محافظات مصر. يتيح هذا القسم للطلاب وأولياء الأمور والمعلمين الوصول إلى تفاصيل دقيقة حول الدرجات والتقييمات لجميع المواد الدراسية. يتم نشر النتائج بشكل دوري وفقًا للمواعيد الرسمية للامتحانات، مما يساهم في تسهيل متابعة تقدم الطلاب على مختلف المستويات التعليمية. يعرض القسم أيضًا نتائج امتحانات الشهادات الخاصة بالطلاب في جميع المراحل التعليمية، مما يسهم في تسهيل عملية تحديد الأداء الأكاديمي وتوجيه الطلاب نحو تحسين نتائجهم.</p><a href="https://www.socialcreator.com/kingtechnology/?s=301268" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>31. قسم إرسال واستقبال المدفوعات</summary><div class="platform-service-content"><p>يختص هذا القسم بتقديم خدمات تحويل واستلام الأموال بكفاءة وأمان، لتلبية احتياجات الأفراد والشركات. يتيح إرسال الأموال محليًا ودوليًا عبر أنظمة حديثة وسهلة الاستخدام، مع ضمان السرعة والدقة في التنفيذ. كما يُسهل استقبال المدفوعات عبر وسائل متعددة، بما في ذلك التحويلات البنكية، المحافظ الإلكترونية، وخدمات الدفع الإلكتروني. يعمل القسم وفق أعلى معايير الأمان لضمان حماية بيانات العملاء وأموالهم، مع توفير دعم فني متواصل لحل أي مشكلات تواجه العملاء.</p><a href="https://www.socialcreator.com/kingtechnology/?s=302046" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>32. قسم الجدول الدوري</summary><div class="platform-service-content"><p>يقدم قسم "الجدول الدوري" معلومات شاملة حول العناصر الكيميائية وتصنيفها وفقًا لخصائصها الذرية. يحتوي هذا القسم على تفاصيل دقيقة عن كل عنصر، مثل العدد الذري، الرموز الكيميائية، الكتلة الذرية، والتوزيع الإلكتروني. كما يقدم معلومات عن الفئات المختلفة من العناصر مثل المعادن، اللافلزات، والفلزات القلوية. يتيح للمستخدمين فهم التفاعلات الكيميائية والروابط بين العناصر، مما يسهل دراسة الكيمياء. يساعد هذا القسم في تعزيز الفهم العلمي ويوفر قاعدة معرفية قوية لطلاب الكيمياء والباحثين. يهدف القسم إلى تسهيل التعلم والتطبيق العملي للمفاهيم الكيميائية الأساسية في مختلف المجالات.</p><a href="https://www.socialcreator.com/kingtechnology/?s=304348" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>33. تصميم فيديوهات</summary><div class="platform-service-content"><p>قسم تصميم الفيديوهات يقدم حلولًا مبتكرة لصناعة محتوى مرئي يعكس رؤية وهوية العميل بدقة واحترافية. فريقنا المتخصص يعمل على إنشاء فيديوهات متنوعة تشمل الإعلانات الترويجية، الفيديوهات التعليمية، والمحتوى الإبداعي الذي يهدف لجذب الانتباه وتحقيق الأهداف التسويقية. نحن نستخدم أحدث التقنيات في التصوير، المونتاج، والتحرير لتقديم فيديوهات ذات جودة عالية تثير الإعجاب وتعزز الرسائل المطلوبة. نركز على تقديم تجارب مرئية استثنائية تترك تأثيرًا طويل الأمد لدى المشاهدين، سواء للأفراد أو الشركات، مما يساعدهم في بناء علاقات قوية مع جمهورهم وتحقيق أهدافهم بفعالية.</p><a href="https://www.socialcreator.com/kingtechnology/?s=305561" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>34. تلفزيون العالم</summary><div class="platform-service-content"><p>يقدم قسم "تلفزيون العالم" بثًا مباشرًا لقنوات تلفزيونية من مختلف أنحاء العالم، مما يتيح للمستخدمين متابعة البرامج والأخبار والمسلسلات والأفلام من بلدان مختلفة. يحتوي القسم على مجموعة واسعة من القنوات التي تغطي مجالات متنوعة مثل الأخبار، الرياضة، الترفيه، التعليم، والثقافة. يمكن للمستخدمين اختيار القنوات حسب اللغة أو المنطقة الجغرافية أو التخصص، مما يوفر تجربة مشاهدة غنية ومتنوعة. يهدف القسم إلى تعزيز التواصل الثقافي بين الشعوب من خلال توفير نافذة على وسائل الإعلام العالمية، مما يسهم في توسيع الآفاق وزيادة المعرفة بالثقافات المختلفة.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308222" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>35. راديو العالم</summary><div class="platform-service-content"><p>يقدم قسم "راديو العالم" بثًا مباشرًا لمحطات إذاعية من مختلف أنحاء العالم، covering a wide range of genres including music, news, talk shows, and cultural programs. يتيح هذا القسم للمستخدمين استكشاف التنوع الإذاعي العالمي، مع إمكانية اختيار المحطات حسب البلد أو اللغة أو النوع (موسيقى كلاسيكية، أخبار، برامج حوارية). يحتوي على محطات شهيرة مثل BBC Radio, NPR, Radio France Internationale, بالإضافة إلى إذاعات محلية من مختلف الثقافات. يهدف القسم إلى تعزيز التواصل الثقافي من خلال الصوت، ويوفر تجربة استماع غنية تتيح للمستخدمين التعرف على أنماط موسيقية جديدة ومتابعة الأحداث العالمية من مصادر متنوعة. كما يدعم ميزة حفظ المحطات المفضلة وإنشاء قوائم تشغيل شخصية.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308443" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>36. أدوات التحويل</summary><div class="platform-service-content"><p>يقدم قسم "أدوات التحويل" مجموعة شاملة من الأدوات الذكية لتحويل الوحدات المختلفة بسهولة ودقة. يتضمن أدوات تحويل العملات، القياسات (مثل الطول، الوزن، الحجم)، درجات الحرارة، الوقت، وأنظمة العدّ. تم تصميم هذه الأدوات لتكون سهلة الاستخدام مع واجهة بديهية تتيح التحويل الفوري بين الوحدات المختلفة. يدعم القسم أيضًا تحويلات متقدمة مثل تحويل ملفات الصوت والصورة إلى صيغ مختلفة، وتحويل الوحدات الكهربائية والطاقة. تهدف هذه الأدوات إلى توفير حلول عملية للمحترفين والطلاب والأفراد في حياتهم اليومية، مع ضمان الدقة والسرعة في النتائج.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308543" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+                <details class="animate-on-scroll fade-in"><summary>37. مبرمج التطبيق و طرق التواصل</summary><div class="platform-service-content"><p>يحتوي هذا القسم على جميع بيانات مبرمج التطبيق، حيث يتم تقديم معلومات شاملة حول خلفيته المهنية، وخبراته في مجالات تطوير البرمجيات. يتضمن القسم تفاصيل عن المشاريع السابقة التي عمل عليها المبرمج، بما في ذلك التطبيقات والأنظمة التي طورها. كما يقدم معلومات حول اللغات البرمجية التي يتقنها، مثل Java وPython وC# و أكثر بكثير، بالإضافة إلى المنصات التي يعمل عليها. يمكن للمستخدمين أيضًا العثور على طرق التواصل مع المبرمج، سواء من خلال البريد الإلكتروني أو وسائل التواصل الاجتماعي، مما يتيح لهم الحصول على دعم مباشر أو استفسارات حول التطبيق. يهدف هذا القسم إلى تعزيز الشفافية وبناء الثقة بين المبرمج والمستخدمين.</p><a href="https://www.socialcreator.com/kingtechnology/?s=308544" target="_blank" rel="noopener noreferrer" class="section-link">الدخول إلي القسم</a></div></details>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KING TECHNOLOGY</h3>
+                    <p>علامة تجارية تقنية تقدم حلولاً مبتكرة في مجالات البرمجة، الذكاء الاصطناعي، الأمن السيبراني وتقنيات الفضاء، أسسها أحمد عصام.</p>
+                  
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">من أنا</a></li>
+                        <li><a href="#logos">الشعارات</a></li>
+                        <li><a href="#services">خدماتي</a></li>
+                        <li><a href="#products">منتجاتي</a></li>
+                        <li><a href="#bots">بوتاتي</a></li>
+                        <li><a href="#contact">تواصل معي</a></li>
+                        <li><a href="#king-technology-platform">منصة KING TECHNOLOGY</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>العنوان</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> محلة موسى، كفر الشيخ، مصر</p>
+                   
+            </div>
+            <div class="copyright">
+                <p>© KING TECHNOLOGY <span id="currentYear"></span>. جميع الحقوق محفوظة لأحمد عصام.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isExpanded = navLinks.classList.contains('active');
+                mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
+                mobileMenuBtn.innerHTML = isExpanded ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            });
+        }
+
+        const mainNavLinks = document.querySelectorAll('#main-nav ul li a');
+        const sections = document.querySelectorAll('section');
+        const navHeight = document.getElementById('main-nav') ? document.getElementById('main-nav').offsetHeight : 70;
+
+        mainNavLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    // Smooth scroll to the element, considering nav height
+                    let targetPosition = targetElement.offsetTop - navHeight;
+                    // Special handling for details elements to ensure they are open before scrolling
+                    if (targetElement.id === 'king-technology-platform' && targetElement.tagName.toLowerCase() !== 'section'){
+                         // If it's a wrapper for details, scroll to its top
+                    } else if (targetElement.tagName.toLowerCase() === 'details') {
+                        targetElement.open = true; // Ensure it's open
+                         // Re-calculate position after opening if it affects layout significantly (usually minor)
+                        targetPosition = targetElement.offsetTop - navHeight;
+                    } else if (targetElement.closest('details')) { // If scrolling to content within a details
+                        targetElement.closest('details').open = true;
+                        targetPosition = targetElement.offsetTop - navHeight;
+                    }
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // If opening a specific detail within the platform section from a direct link (future enhancement)
+                    // Example: if URL has #platform-service-X, open that detail
+                    if(targetId.startsWith('platform-service-')){
+                        const detailElement = document.getElementById(targetId);
+                        if(detailElement && detailElement.tagName === 'DETAILS'){
+                            detailElement.open = true;
+                        }
+                    }
+                }
+            });
+        });
+
+        function updateActiveLink() {
+            let currentSectionId = '';
+            let minDistance = Infinity;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - navHeight - 100; // Offset to trigger earlier
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const scrollPosition = pageYOffset;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSectionId = section.getAttribute('id');
+                    minDistance = 0; // Exact match
+                } else if (minDistance !== 0) { // If not an exact match, find closest
+                    const distanceToTop = Math.abs(scrollPosition - sectionTop);
+                    if (distanceToTop < minDistance) {
+                        minDistance = distanceToTop;
+                        // Check if this closest section should be active or if we passed it
+                        if(scrollPosition < sectionTop && sections[0].id !== section.id) { // prefer previous if scrolling up
+                           // Try to find previous visible section
+                        } else {
+                           currentSectionId = section.getAttribute('id');
+                        }
+                    }
+                }
+            });
+             // Fallback if no section is perfectly matched (e.g. at very top or bottom)
+            if (!currentSectionId && sections.length > 0) {
+                if (pageYOffset < sections[0].offsetTop - navHeight) {
+                    currentSectionId = sections[0].getAttribute('id');
+                } else if (pageYOffset + window.innerHeight >= document.body.scrollHeight - 50) { // At the bottom
+                    currentSectionId = sections[sections.length - 1].getAttribute('id');
+                }
+            }
+
+
+            mainNavLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.getAttribute('href').substring(1) === currentSectionId) {
+                    link.classList.add('active-link');
+                }
+            });
+        }
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('active');
+                } else {
+                    backToTopBtn.classList.remove('active');
+                }
+                updateActiveLink();
+            });
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        const animatedSections = document.querySelectorAll('section');
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        animatedSections.forEach(section => { sectionObserver.observe(section); });
+        
+        const elementObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 }); // Adjusted threshold
+        animatedElements.forEach(el => { elementObserver.observe(el); });
+
+        const currentYearSpan = document.getElementById('currentYear');
+        if (currentYearSpan) { currentYearSpan.textContent = new Date().getFullYear(); }
+        updateActiveLink();
+
+
+        // Handle opening specific details via hash
+        function openDetailFromHash() {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1);
+                // Try to find a details element or an element within a details that matches the hash
+                const targetElement = document.getElementById(hash);
+                if (targetElement) {
+                    const detailsParent = targetElement.closest('details');
+                    if (detailsParent) {
+                        detailsParent.open = true;
+                        // Scroll to it after a slight delay to ensure layout is updated
+                        setTimeout(() => {
+                            const targetPosition = detailsParent.offsetTop - navHeight;
+                            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                        }, 100);
+                    } else if (targetElement.tagName === 'DETAILS') {
+                         targetElement.open = true;
+                         setTimeout(() => {
+                            const targetPosition = targetElement.offsetTop - navHeight;
+                            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                        }, 100);
+                    }
+                }
+            }
+        }
+        window.addEventListener('hashchange', openDetailFromHash);
+        openDetailFromHash(); // Check on initial load
+
+    });
+</script>
+</body>
+</html>
+
