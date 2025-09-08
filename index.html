@@ -1,233 +1,1827 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة أرقام الهاتف</title>
+    <title>Ahmed Esam [KING TECHNOLOGY]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+    
+        :root {
+            --primary-color: #1a237e; /* Indigo */
+            --secondary-color: #007bff; /* Bootstrap Blue */
+            --accent-color: #ffc107; /* Amber */
+            --light-color: #f8f9fa; /* Light Gray */
+            --dark-color: #212529; /* Dark Gray */
+            --gold-color: #ffd700; /* Gold */
+            --success-color: #28a745; /* Green */
+            --danger-color: #dc3545; /* Red */
+            --text-color: #343a40; /* Darker Gray for text */
+            --border-radius: 12px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.8;
         }
+
         .container {
-            max-width: 800px;
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0 15px;
         }
-        h1 {
-            color: #2c3e50;
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color) 70%);
+            color: white;
+            padding: 3rem 0 4rem;
             text-align: center;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
         }
-        h2 {
-            color: #34495e;
-            border-right: 4px solid #e74c3c;
-            padding-right: 15px;
-            margin-top: 30px;
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--accent-color);
+            object-fit: cover;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        .phone-item {
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.5rem 0;
+        }
+
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
-            margin: 5px 0;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            background: #fafafa;
         }
-        .phone-item:nth-child(even) {
-            background: #f5f5f5;
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
-        .phone-number {
-            font-weight: bold;
-            color: #2980b9;
-            font-size: 16px;
-            direction: ltr;
-            text-align: left;
+
+        .logo i {
+            margin-left: 0.5rem;
+            color: var(--secondary-color);
         }
-        .note-field {
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-right: 1rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 0.5rem 0.25rem;
+            position: relative;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active-link {
+            color: var(--secondary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
             border: none;
-            border-bottom: 1px solid #bdc3c7;
-            padding: 5px 10px;
-            width: 300px;
-            background: transparent;
-            font-size: 14px;
-        }
-        .note-field:focus {
-            outline: none;
-            border-bottom: 2px solid #3498db;
-        }
-        .download-btn {
-            background: #27ae60;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 5px;
-            font-size: 16px;
+            font-size: 1.5rem;
+            color: var(--dark-color);
             cursor: pointer;
-            margin: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            margin-left: 20px; /* Adjust this value for spacing */
         }
-        .download-btn:hover {
-            background: #229954;
-            transform: translateY(-1px);
+
+        section {
+            padding: 3rem 0;
         }
-        .btn-container {
+
+        section:nth-child(odd) {
+            background-color: #fdfdfd;
+        }
+
+        .section-title {
             text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            border-top: 2px solid #ecf0f1;
+            margin-bottom: 2rem;
         }
-        @media print {
-            .btn-container, .download-btn {
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            font-size: 1rem;
+        }
+
+        .about-image {
+            flex: 0 0 350px;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .logos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .logo-item {
+            background-color: white;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            background-color: var(--light-color);
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .logo-item h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        /* Services Section Styling */
+        .services-grid, .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card, .product-card {
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover, .product-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        }
+        
+        .service-card .icon, .product-card .icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3, .product-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Bots & Apps Section Styling */
+        .bots-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .bot-card {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 20px; /* More rounded corners */
+            padding: 2rem 1.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #90caf9;
+        }
+
+        .bot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(0);
+            border-radius: 50%;
+            transition: transform 0.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .bot-card:hover::before {
+            transform: scale(3);
+        }
+
+        .bot-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .bot-card .bot-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .bot-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .bot-card h3 i {
+            margin-left: 0.8rem;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+        }
+
+        .bot-link {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .bot-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+
+        /* Contact Section Styling - New Design */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-7px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-icon-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon-container {
+            transform: rotateY(360deg);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .contact-card p {
+            font-size: 1rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-link {
+            display: block;
+            margin-top: 1rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            text-align: right;
+        }
+
+        .footer-section:first-child {
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section h3::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--gold-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-color);
+        }
+
+        .footer-section p, .footer-section li {
+            font-size: 0.9rem;
+        }
+
+        .footer-section i {
+            margin-left: 0.3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+            z-index: 999;
+            border: 1px solid var(--accent-color);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-color);
+        }
+
+        @media (max-width: 992px) {
+            .nav-container {
+                position: relative;
+            }
+
+            .mobile-menu-btn {
                 display: none;
             }
+            
+            .nav-links {
+                display: flex;
+                flex-direction: row;
+                width: auto;
+                background-color: transparent;
+                position: static;
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .nav-links li {
+                margin: 0 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 0.25rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-image {
+                flex: 1 1 100%;
+                margin-top: 1.5rem;
+            }
         }
-        .section {
-            margin-bottom: 40px;
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-section, .footer-section:first-child {
+                text-align: center;
+            }
+
+            .footer-section h3::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            header {
+                padding: 2rem 0 3rem;
+            }
+
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
+</script>
 </head>
 <body>
-    <div class="container">
-        <h1>📞 قائمة أرقام الهاتف مع خانات للملاحظات</h1>
-        
-        <div class="btn-container">
-            <button class="download-btn" onclick="window.print()">🖨️ طباعة الملف</button>
-            <button class="download-btn" onclick="downloadHTML()">💾 تحميل كملف HTML</button>
-            <button class="download-btn" onclick="exportToCSV()">📊 تحميل كملف Excel</button>
-        </div>
+</html>
+    <div style="position: fixed !important; bottom: 0px !important; width: 100% !important; height: 55px !important; z-index: 9999 !important;">
+<!-- 🌐 Google Translate Element -->  <div id="google_translate_element" class="translate-icon"></div>  <script>  
+  // 📌 اجعل الترجمة تبدأ دائمًا بالعربية  
+  if (!document.cookie.includes("googtrans=/ar/ar")) {  
+    document.cookie = "googtrans=/ar/ar;path=/;";  
+  }  
+  
+  function googleTranslateElementInit() {  
+    new google.translate.TranslateElement({  
+      pageLanguage: 'ar',  
+      autoDisplay: true  
+    }, 'google_translate_element');  
+  }  
+</script>  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  <style>  
+  /* زر الترجمة */  
+  .translate-icon {  
+    position: relative;  
+    width: 40px;  
+    height: 40px;  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    cursor: pointer;  
+  
+    /* 📌 التحريك درجة يمين وتحت */  
+    transform: translate(-6px, 1px);  
+  
+    z-index: 9999;  
+  }  
+  
+  /* الأيقونة 🌐 */  
+  .translate-icon::before {  
+    content: "🌐";  
+    font-size: 49px; /* نفس مقاسك */  
+    z-index: 1;  
+    pointer-events: none;  
+  }  
+  
+  /* إخفاء النصوص الجانبية */  
+  .goog-te-gadget {  
+    font-size: 0 !important;  
+    color: transparent !important;  
+  }  
+  .goog-te-gadget span,  
+  .goog-te-gadget-simple,  
+  .goog-te-banner-frame,  
+  .goog-logo-link {  
+    display: none !important;  
+  }  
+  
+  /* القائمة المنسدلة شفافة فوق الأيقونة */  
+  .translate-icon select {  
+    position: absolute;  
+    top: 0;  
+    left: 0;  
+    width: 100%;  
+    height: 100%;  
+    opacity: 0;  
+    cursor: pointer;  
+    z-index: 2;  
+  }  
+</style>  
+<!-- زر الوضع الداكن والفاتح -->  <button id="darkModeToggle"   
+style="position:fixed;bottom:20px;left:1px; /* تم تغيير المكان إلى اليسار */  
+background:#333;color:#fff;border:none;  
+border-radius:50%;width:55px;height:55px;  
+font-size:50px;cursor:pointer;z-index:99999;">
+🌗
+</button>
 
-        <div class="section">
-            <h2>🇪🇬 الأرقام المحلية المصرية - بادئة 010</h2>
-            <div class="phone-item"><span class="phone-number">010 00029881</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 00100991</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 00322295</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 00625750</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 00671821</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 00759637</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 00803308</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 00901059</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 00939345</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 01116517</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 01149845</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 01197157</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 01309423</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 01407375</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 02000350</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 02002092</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 02037141</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 02170306</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 02412013</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 02558701</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 02828735</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 03262343</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 03506727</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 03512431</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 03789522</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 04092298</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 04118881</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 04140248</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 04860488</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 04894017</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 06306299</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 06590688</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 06903208</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 07426227</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 07460006</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 07707762</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 07752816</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 08010888</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 08543611</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 09005168</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 09680923</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 09788573</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 09988031</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 10087779</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 10096027</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 10266346</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 10444143</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 10524040</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 11054614</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 11122772</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 11404447</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 11699998</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 12176334</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 12260444</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 13229405</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">010 13242808</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-        </div>
-
-        <div class="section">
-            <h2>🇪🇬 الأرقام المحلية المصرية - بادئة 011</h2>
-            <div class="phone-item"><span class="phone-number">011 00016703</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 00021821</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 00057000</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 00167884</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 00666070</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 00955888</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 01100789</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 01613999</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 01760209</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">011 02066208</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-        </div>
-
-        <div class="section">
-            <h2>🌍 الأرقام الدولية</h2>
-            <div class="phone-item"><span class="phone-number">+1 202-707-5000</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 202-773-5233</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 303-967-1096</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 515-915-0081</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 564-212-4250</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 647-677-9198</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 646-893-0048</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 650-253-0000</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 800-232-4636</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-            <div class="phone-item"><span class="phone-number">+1 800-307-7309</span><input type="text" class="note-field" placeholder="اكتب ملاحظاتك هنا..."></div>
-        </div>
-
-        <div class="btn-container">
-            <button class="download-btn" onclick="window.print()">🖨️ طباعة الملف</button>
-            <button class="download-btn" onclick="downloadHTML()">💾 تحميل كملف HTML</button>
-            <button class="download-btn" onclick="exportToCSV()">📊 تحميل كملف Excel</button>
-        </div>
+<style>  
+  /* الوضع الداكن */  
+  body.dark-mode {  
+    background-color: #121212 !important;  
+    color: #e0e0e0 !important;  
+  }  
+  
+  body.dark-mode header {  
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a 70%) !important;  
+    color: #f1f1f1 !important;  
+  }  
+  
+  body.dark-mode nav {  
+    background-color: #1f1f1f !important;  
+  }  
+  
+  body.dark-mode .nav-links a {  
+    color: #ddd !important;  
+  }  
+  body.dark-mode .nav-links a:hover,  
+  body.dark-mode .nav-links a.active-link {  
+    color: #90caf9 !important;  
+  }  
+  
+  body.dark-mode section {  
+    background-color: #181818 !important;  
+  }  
+  
+  body.dark-mode .service-card,  
+  body.dark-mode .product-card,  
+  body.dark-mode .bot-card,  
+  body.dark-mode .contact-card,  
+  body.dark-mode .logo-item {  
+    background-color: #1f1f1f !important;  
+    color: #f1f1f1 !important;  
+    border: 1px solid #333 !important;  
+  }  
+  
+  body.dark-mode h1,  
+  body.dark-mode h2,  
+  body.dark-mode h3 {  
+    color: #f1f1f1 !important;  
+  }  
+  
+  body.dark-mode p,  
+  body.dark-mode li {  
+    color: #ccc !important;  
+  }  
+  
+  body.dark-mode a {  
+    color: #90caf9 !important;  
+  }  
+  
+  body.dark-mode footer {  
+    background-color: #0d0d0d !important;  
+    color: #aaa !important;  
+  }  
+</style>  <script>  
+  document.addEventListener("DOMContentLoaded", function() {  
+    const toggleBtn = document.getElementById("darkModeToggle");  
+    const body = document.body;  
+  
+    // استعادة الوضع المحفوظ  
+    if (localStorage.getItem("theme") === "light") {  
+      body.classList.add("light-mode");  
+    }  
+  
+    // تبديل الوضع  
+    toggleBtn.addEventListener("click", () => {  
+      body.classList.toggle("dark-mode");  
+      if (body.classList.contains("dark-mode")) {  
+        localStorage.setItem("theme", "dark");  
+      } else {  
+        localStorage.setItem("theme", "light");  
+      }  
+    });  
+  });  
+</script>           
     </div>
+    <header>
+        <div class="container">
+            <img src="https://www2.0zz0.com/2025/09/02/15/345260820.png" alt="أحمد عصام" class="profile-img">
+            <h1>CIW</h1>
+            <p class="tagline">الشركة الرائدة والمبتكرة الصاعدة في التكنولوجيا</p>
+        </div>
+         
+   </header>
+<section id="about">
+  <div class="container">
+    <div class="section-title">
+      <h2>من نحن</h2>
+    </div>
+    <div class="about-content">
+      <div class="about-text">
+        <p>تُعَد شركة CIW كيانًا عالميًا رائدًا يتميز برؤيته الاستراتيجية الطموحة ونهجه المبتكر في تقديم الحلول الشاملة. تسعى الشركة إلى إحداث تأثير عميق في المشهد العالمي من خلال تقديم خدمات ومنتجات متكاملة تغطي مختلف المجالات، مع التزام راسخ بالجودة، والكفاءة، والتطور المستمر.</p>
+        <p>تؤمن CIW بأن الابتكار هو المحرك الأساسي للنمو، ولذلك تضع الإبداع والتطوير في صميم كل ما تقدمه. تلتزم الشركة بتقديم قيمة حقيقية لعملائها حول العالم، عبر الاعتماد على خبراتها المتنوعة وشبكة مواردها العالمية، بما يعكس مكانتها كشريك موثوق ووجهة مفضلة للتميز.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<style>
+  /* توحيد حجم الخط */
+  #about h2, #about p {
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.8;
+  }
+</style>
+                </div>
+                <div class="about-image">
+                    <img src="https://www2.0zz0.com/2025/09/04/18/685330149.png" alt="أحمد عصام يتأمل المستقبل">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="logos">
+        <div class="container">
+            <div class="section-title">
+             
+             
+    </section>
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-hammer"></i></div>
+                    <h3>هكر</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <h3>برمجة</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>هندسة شبكات</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>تحليل بيانات</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>تكنولوجيا مالية</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-money-check-alt"></i></div>
+                    <h3>خدمات بنكية</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>دفع إلكتروني</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-phone-volume"></i></div>
+                    <h3>اتصالات</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-plug"></i></div>
+                    <h3>إلكترونيات</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>إدارة أعمال</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-retweet"></i></div>
+                    <h3>تحول رقمي</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-headset"></i></div>
+                    <h3>خدمة عملاء</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <h3>ذكاء اصطناعي</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-server"></i></div>
+                    <h3>تكنولوجيا المعلومات</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-seedling"></i></div>
+                    <h3>زراعة</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-palette"></i></div>
+                    <h3>تصميم الجرافيك</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>فوتوشوب</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-industry"></i></div>
+                    <h3>صناعة</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-store-alt"></i></div>
+                    <h3>تجارة</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-globe-americas"></i></div>
+                    <h3>سياحة</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-concierge-bell"></i></div>
+                    <h3>خدمات عامة</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-landmark"></i></div>
+                    <h3>خدمات حكومية</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>خدمات الفيزا والماكينة</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-tty"></i></div>
+                    <h3>خدمات الاتصالات</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <h3>خدمات AI</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-gavel"></i></div>
+                    <h3>خدمات النيابة</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-link"></i></div>
+                    <h3>خدمات الخطوط</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-money-bill-alt"></i></div>
+                    <h3>خدمات الكاش</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h3>خدمات مالية وغير مالية</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-user-circle"></i></div>
+                    <h3>خدمات لك أنت</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-gem"></i></div>
+                    <h3>خدمات CONNICT</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-plus"></i></div>
+                    <h3>خدمات إضافية</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-star-of-life"></i></div>
+                    <h3>خدمات Plus</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-user-cog"></i></div>
+                    <h3>خدمات العميل</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-crown"></i></div>
+                    <h3>خدمات Premium</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-share-alt"></i></div>
+                    <h3>خدمات السوشيال ميديا</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>خدمات تعليمية</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-running"></i></div>
+                    <h3>الأنشطة والخدمات</h3>
+                </div>
+                <div class="service-card">
+                    <div class="icon"><i class="fas fa-ellipsis-h"></i></div>
+                    <h3>أكثر بكثير</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>منتجاتنا</h2>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-print"></i></div>
+                    <h3>التغليف والطباعة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-gifts"></i></div>
+                    <h3>الهدايا والمصروفات اليدوية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>الإلكترونيات الاستهلاكية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-car"></i></div>
+                    <h3>المركبات والنقل</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-flask"></i></div>
+                    <h3>المواد الكيميائية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-hard-hat"></i></div>
+                    <h3>البناء وآلات البناء</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-tools"></i></div>
+                    <h3>الأدوات والمعدات</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-microchip"></i></div>
+                    <h3>المكونات الإلكترونية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-dumbbell"></i></div>
+                    <h3>الرياضة والترفيه</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-cog"></i></div>
+                    <h3>قطع غيار المركبات وإكسسواراتها</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-utensils"></i></div>
+                    <h3>معدات الخدمات التجارية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-home"></i></div>
+                    <h3>المنزل والحديقة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-tv"></i></div>
+                    <h3>الأجهزة المنزلية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-tshirt"></i></div>
+                    <h3>الأقمشة والمواد الخاصة النسيجية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-pizza-slice"></i></div>
+                    <h3>أطعمة ومشروبات</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-notes-medical"></i></div>
+                    <h3>أجهزة ومستلزمات طبية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-spray-can"></i></div>
+                    <h3>الجمال</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-cogs"></i></div>
+                    <h3>الآلات الصناعية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-baby"></i></div>
+                    <h3>الأم، الأطفال واللعب</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-gem"></i></div>
+                    <h3>الساعات والمجوهرات والذهب</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-couch"></i></div>
+                    <h3>الأثاث</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-shopping-bag"></i></div>
+                    <h3>الأمتعة والحقائب والشنط</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-city"></i></div>
+                    <h3>الإنشاءات والعقارات</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-pump-soap"></i></div>
+                    <h3>الرعاية الشخصية والتنظيف المنزلي</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-car-side"></i></div>
+                    <h3>إكسسوارات السيارات</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>المصابيح والإضاءة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>الرعاية الصحية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-solar-panel"></i></div>
+                    <h3>الطاقة المتجددة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-box"></i></div>
+                    <h3>المعدات والمستلزمات</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-pencil-alt"></i></div>
+                    <h3>المستلزمات المكتبية والمدرسية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-dog"></i></div>
+                    <h3>مستلزمات الحيوانات الأليفة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-user-shield"></i></div>
+                    <h3>الأمن</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-vials"></i></div>
+                    <h3>معدات وأدوات الاختبار</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>السلامة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-stream"></i></div>
+                    <h3>المعادن والسبائك</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-cubes"></i></div>
+                    <h3>المطاط والبلاستيك</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-dolly-flatbed"></i></div>
+                    <h3>مناولة المواد</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-bolt"></i></div>
+                    <h3>نقل الطاقة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h3>خدمات الأعمال</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-tools"></i></div>
+                    <h3>خدمات التصنيع</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-tractor"></i></div>
+                    <h3>الزراعة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-tree"></i></div>
+                    <h3>البيئة</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-hammer"></i></div>
+                    <h3>الحديد والأخشاب</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-cable-car"></i></div>
+                    <h3>خطوط</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-wifi"></i></div>
+                    <h3>رواتر</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-credit-card"></i></div>
+                    <h3>فيزات</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>أجهزة إلكترونية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-phone-square-alt"></i></div>
+                    <h3>تليفون أرضي</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>المطبوعات الورقية</h3>
+                </div>
+                <div class="product-card">
+                    <div class="icon"><i class="fas fa-ellipsis-h"></i></div>
+                    <h3>أكثر بكثير</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="bots">
+        <div class="container">
+            <div class="section-title">
+                <h2>بوتاتنا وتطبيقاتنا</h2>
+            </div>
+            <div class="bots-container">
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوتات ahmedesam</h3>
+                        <a href="https://t.me/ahmedesam_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت ترجمة</h3>
+                        <a href="https://t.me/ahmedesam1_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت التحدث مع الذكاء الاصطناعي</h3>
+                        <a href="https://t.me/ahmedesam2_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت تحميل من سوشيال ميديا</h3>
+                        <a href="https://t.me/ahmedesam3_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت تحويل الكلمات إلى صور</h3>
+                        <a href="https://t.me/ahmedesam4_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت تواصل</h3>
+                        <a href="https://t.me/ahmedesam5_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت صنع لوجو</h3>
+                        <a href="https://t.me/ahmedesam6_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت ايميل مؤقت</h3>
+                        <a href="https://t.me/ahmedesam7_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت اعلانات</h3>
+                        <a href="https://t.me/ahmedesam8_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت الجني الأزرق</h3>
+                        <a href="https://t.me/ahmedesam9_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت صانع بوتات</h3>
+                        <a href="https://t.me/ahmedesam10_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت تحويل الصور إلى PDF</h3>
+                        <a href="https://t.me/ahmedesam11_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت اهداء الأغاني</h3>
+                        <a href="https://t.me/ahmedesam12_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت صانع كودات جاهزة</h3>
+                        <a href="https://t.me/ahmedesam13_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت المتجر</h3>
+                        <a href="https://t.me/ahmedesam14_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت ادارة حساب</h3>
+                        <a href="https://t.me/ahmedesam15_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت الموافقة على الإنضمام</h3>
+                        <a href="https://t.me/ahmedesam16_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت حساب العمر</h3>
+                        <a href="https://t.me/ahmedesam17_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت تحقق من الوهمي</h3>
+                        <a href="https://t.me/ahmedesam18_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت حماية القنوات</h3>
+                        <a href="https://t.me/ahmedesam19_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت صنع ملصقات</h3>
+                        <a href="https://t.me/ahmedesam21_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت كتابة حقوق على الصور</h3>
+                        <a href="https://t.me/ahmedesam22_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت تمويل قنوات</h3>
+                        <a href="https://t.me/ahmedesam23_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت إصلاح جودة الصورة</h3>
+                        <a href="https://t.me/ahmedesam24_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت معاني أسماء</h3>
+                        <a href="https://t.me/ahmedesam25_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت سايت</h3>
+                        <a href="https://t.me/ahmedesam26_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت حجره ورقة مقص</h3>
+                        <a href="https://t.me/ahmedesam27_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت زخرفة</h3>
+                        <a href="https://t.me/ahmedesam28_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت التعرف على الموسيقى</h3>
+                        <a href="https://t.me/ahmedesam29_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت صارحني</h3>
+                        <a href="https://t.me/ahmedesam30_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت أوامر</h3>
+                        <a href="https://t.me/ahmedesam31_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت تحويل صوت إلى كتابة</h3>
+                        <a href="https://t.me/ahmedesam32_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت البلورة السحرية</h3>
+                        <a href="https://t.me/ahmedesam33_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت بروكسي</h3>
+                        <a href="https://t.me/ahmedesam34_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت لعبة XO</h3>
+                        <a href="https://t.me/ahmedesam35_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت تحويل صيغ</h3>
+                        <a href="https://t.me/ahmedesam36_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت البصمات</h3>
+                        <a href="https://t.me/ahmedesam37_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت ناسخ الكتابة</h3>
+                        <a href="https://t.me/ahmedesam38_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت لعبة روليت</h3>
+                        <a href="https://t.me/ahmedesam39_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-telegram"></i> بوت ادارة منشورات القناة</h3>
+                        <a href="https://t.me/ahmedesam40_bot" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fas fa-robot"></i> تطبيق Poe</h3>
+                        <a href="https://poe.com/KINGTECHNOLOGY" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fas fa-robot"></i> تطبيق CiciAI</h3>
+                        <a href="https://ciciai.com/bot/mUw0OwEX" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fas fa-robot"></i> تطبيق Monica</h3>
+                        <a href="https://monica.im/share/bot?botId=808yNATK" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-whatsapp"></i> تطبيق WhatsApp (AI)</h3>
+                        <a href="https://wa.me/ais/1032993055357453?s=5" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-facebook-messenger"></i> تطبيق Messenger (AI)</h3>
+                        <a href="https://m.me/1434139967970296?is_ai=1" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fab fa-instagram"></i> تطبيق Instagram (AI)</h3>
+                        <a href="https://aistudio.instagram.com/ai/1032993055357453?utm_source=ai_agent" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fas fa-brain"></i> تطبيق Gemini</h3>
+                        <a href="https://gemini.google.com/gem/9ac6476fa956" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+                <div class="bot-card">
+                    <div class="bot-content">
+                        <h3><i class="fas fa-search"></i> تطبيق You.com</h3>
+                        <a href="https://you.com/?chatMode=user_mode_d5c26722-2964-4c0f-8f89-6da18b1d55ba" class="bot-link" target="_blank" rel="noopener noreferrer">دخول للقسم</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>طرق التواصل معنا</h2>
+            </div>
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fas fa-phone-alt"></i></div>
+                    <h3>الهواتف</h3>
+                    <p>+201010793073</p>
+                    <p>+201508959686</p>
+                    <a href="tel:+201010793073" class="contact-link">اتصل الآن (+2010)</a>
+                    <a href="tel:+201508959686" class="contact-link">اتصل الآن (+2015)</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-whatsapp"></i></div>
+                    <h3>واتساب</h3>
+                    <a href="https://wa.me/201010793073" target="_blank" rel="noopener noreferrer" class="contact-link">واتساب (+2010)</a>
+                    <a href="https://wa.me/201508959686" target="_blank" rel="noopener noreferrer" class="contact-link">واتساب (+2015)</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-viber"></i></div>
+                    <h3>فايبر</h3>
+                    <a href="viber://chat?number=+201010793073" class="contact-link">فايبر (+2010)</a>
+                    <a href="viber://chat?number=+201508959686" class="contact-link">فايبر (+2015)</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-facebook-messenger"></i></div>
+                    <h3>ماسنجر</h3>
+                    <a href="https://m.me/ahmedesam" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر ماسنجر</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-facebook"></i></div>
+                    <h3>فيسبوك</h3>
+                    <a href="https://www.facebook.com/share/1AE5UoaFye/" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة صفحة الفيسبوك</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-telegram"></i></div>
+                    <h3>تيليجرام</h3>
+                    <a href="https://t.me/201010793073" target="_blank" rel="noopener noreferrer" class="contact-link">تيليجرام (+2010)</a>
+                    <a href="https://t.me/201508929686" target="_blank" rel="noopener noreferrer" class="contact-link">تيليجرام (+2015)</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fas fa-envelope"></i></div>
+                    <h3>البريد الإلكتروني</h3>
+                    <a href="mailto:ahmedesam5177@gmail.com" class="contact-link">ahmedesam5177@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-instagram"></i></div>
+                    <h3>إنستجرام</h3>
+                    <a href="https://www.instagram.com/ahmedesam347/profilecard/?igsh=YW9hdXJkNzZlYXQw" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة إنستجرام</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-threads"></i></div>
+                    <h3>Threads</h3>
+                    <a href="https://www.threads.net/@ahmedesam137" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة Threads</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-twitter"></i></div>
+                    <h3>تويتر (X)</h3>
+                    <a href="https://x.com/AhmedE56810?t=7xT6MiMTylMAbLh7o4TRDg&s=09" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة تويتر</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-snapchat"></i></div>
+                    <h3>سناب شات</h3>
+                    <a href="https://www.snapchat.com/add/ahmed_esam24747?share_id=FWJKCPst6Ec&locale=ar-AE" target="_blank" rel="noopener noreferrer" class="contact-link">إضافة سناب شات</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-youtube"></i></div>
+                    <h3>يوتيوب</h3>
+                    <a href="https://youtube.com/@ahmedesam-o7v?si=O0llUgx2lDpnv1ZA" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة يوتيوب</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-tiktok"></i></div>
+                    <h3>تيك توك</h3>
+                    <a href="https://www.tiktok.com/@ahmedesam6500?_t=8qttAOU2YRp&_r=1" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة تيك توك</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-twitch"></i></div>
+                    <h3>تويتش</h3>
+                    <a href="https://www.twitch.tv/ahmedesam_147369" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة تويتش</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-line"></i></div>
+                    <h3>لاين</h3>
+                    <a href="https://line.me/ti/p/hueVD57bb_" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر لاين</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-weixin"></i></div>
+                    <h3>وي شات</h3>
+                    <a href="https://weixin.qq.com/r/wxid_typbuqje7tmy22" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر وي شات</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-kickstarter-k"></i></div>
+                    <h3>كيك</h3>
+                    <a href="https://kik.me/AhmedEsam147369" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر كيك</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-pinterest"></i></div>
+                    <h3>بنترست</h3>
+                    <a href="https://pin.it/28ZulJwKY" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة بنترست</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-tumblr"></i></div>
+                    <h3>تمبلر</h3>
+                    <a href="https://www.tumblr.com/ahmedesam147369?source=share" target="_blank" rel="noopener noreferrer" class="contact-link">زيارة تمبلر</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fas fa-question-circle"></i></div>
+                    <h3>Ask.fm</h3>
+                    <a href="https://app.ask.fm/ahmedesam5177" target="_blank" rel="noopener noreferrer" class="contact-link">اسألني على Ask.fm</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-soundcloud"></i></div>
+                    <h3>ساوند كلاود</h3>
+                    <a href="https://on.soundcloud.com/HUqhv" target="_blank" rel="noopener noreferrer" class="contact-link">استمع على ساوند كلاود</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-spotify"></i></div>
+                    <h3>سبوتيفاي</h3>
+                    <a href="https://open.spotify.com/user/31bhk2q4ysef4fvpyz6rxaygapgu?si=00oFStSXSfissCSUnc0gyQ" target="_blank" rel="noopener noreferrer" class="contact-link">استمع على سبوتيفاي</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-linkedin"></i></div>
+                    <h3>لينكد إن</h3>
+                    <a href="https://www.linkedin.com/in/ahmed-esam-4b859535b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="contact-link">الملف الشخصي على لينكد إن</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-skype"></i></div>
+                    <h3>سكايب</h3>
+                    <a href="https://join.skype.com/invite/NF8sA5qNpG5D" target="_blank" rel="noopener noreferrer" class="contact-link">تواصل عبر سكايب</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-github"></i></div>
+                    <h3>جيت هب</h3>
+                    <a href="https://github.com/AEK_admin" target="_blank" rel="noopener noreferrer" class="contact-link">الملف الشخصي على جيت هب</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-vk"></i></div>
+                    <h3>VK</h3>
+                    <a href="https://vk.com/id861862873" target="_blank" rel="noopener noreferrer" class="contact-link">الملف الشخصي على VK</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon-container"><i class="fab fa-meta"></i></div>
+                    <h3>Oculus (Meta)</h3>
+                    <a href="https://horizon.meta.com/profile/AhmedEsam/?hws=JhpGUVxVM8" target="_blank" rel="noopener noreferrer" class="contact-link">الملف الشخصي على Meta Horizon</a>          
+</body>
+</html>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ⬆️ أيقونة الرجوع للأعلى -->  
+<div id="backToTop" title="رجوع للأعلى">  
+  <!-- SVG سهم أنيق -->  
+  <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#007bff" viewBox="0 0 24 24">  
+    <path d="M12 4l-8 8h6v8h4v-8h6z"/>  
+  </svg>  
+</div>  
+  
+<style>  
+  #backToTop {  
+    position: fixed;  
+    bottom: 3px;             /* مرفوع 85px */  
+    left: 50%;  
+    transform: translateX(-50%);  
+    z-index: 99999;  
+    cursor: pointer;  
+    display: none;            /* مخفي في البداية */  
+  }  
+  
+  #backToTop svg {  
+    filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.7));  
+    transition: all 0.4s ease-in-out;  
+    animation: pulse 2s infinite; /* نبض متوهج */  
+  }  
+  
+  #backToTop:hover svg {  
+    fill: #ff6600;  
+    filter: drop-shadow(0 0 20px rgba(255, 102, 0, 0.9));  
+    transform: scale(1.2) translateY(-100px); /* يكبر سنة ويتحرك لفوق */  
+  }  
+  
+  @keyframes pulse {  
+    0%   { filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.5)); }  
+    50%  { filter: drop-shadow(0 0 20px rgba(0, 123, 255, 1)); }  
+    100% { filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.5)); }  
+  }  
+</style>  
+  
+<script>  
+  const backToTopBtn = document.getElementById("backToTop");  
+  
+  // إظهار الأيقونة عند النزول  
+  window.addEventListener("scroll", () => {  
+    if (window.scrollY > 200) {  
+      backToTopBtn.style.display = "block";  
+    } else {  
+      backToTopBtn.style.display = "none";  
+    }  
+  });  
+  
+  // التمرير لأعلى عند الضغط  
+  backToTopBtn.addEventListener("click", () => {  
+    window.scrollTo({ top: 0, behavior: "smooth" });  
+  });  
+</script>
+
+<script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>  <!-- زر أيقوني للدردشة -->  <a id="chatBtn" style="  
+display: flex;  
+align-items: center;  
+justify-content: center;  
+position: fixed;  
+top: 50px;    /* ارتفاع الزر من الأعلى */  
+left: 0;       /* لصق الزر على الحافة اليسرى */  
+width: 60px;  
+height: 60px;  
+background-color: #0075E3;  
+border-radius: 50%;  
+border: none;  
+cursor: pointer;  
+z-index: 9999;  
+box-shadow: 0 4px 6px rgba(0,0,0,0.2);  
+">
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff" viewBox="0 0 24 24">
+<path d="M20 2H4C2.897 2 2 2.897 2 4v14c0 1.103.897 2 2 2h14l4 4V4c0-1.103-.897-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+</svg>
+</a>
+
+<!-- نافذة Modal صغيرة -->  <div id="chatModal" style="  
+  display: none;  
+  position: fixed;  
+  top: 50%;  
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  width: 375px;       /* عرض النافذة */  
+  height: 600px;      /* ارتفاع النافذة */  
+  background-color: #fff;  
+  border-radius: 10px;  
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);  
+  z-index: 9998;  
+  overflow: hidden;  
+">  
+  <div id="agentContainer" style="width:100%;height:100%;"></div>  
+</div>  <script>  
+  const btn = document.getElementById('chatBtn');  
+  const modal = document.getElementById('chatModal');  
+  
+  btn.addEventListener('click', function() {  
+    if (modal.style.display === "none") {  
+      modal.style.display = "block";  
+      // تهيئة الـ Agent داخل الـ div  
+      window.AgentInitializer.initModalView({  
+        rootId: "agentContainer",  
+        formID: "0199160917cb749ba85bb3fba78e15f4cda9",  
+        queryParams: ["skipWelcome=1"],  
+        domain: "https://www.jotform.com",  
+        isInitialOpen: true,  
+        isDraggable: true,  
+        variant: false,  
+        isVoice: false  
+      });  
+    } else {  
+      modal.style.display = "none";  
+    }  
+  });  
+</script>  
+  <script src="https://cdn.jotfor.ms/s/static/latest/static/feedback2.js"></script>      <script>    
+    var componentID = new JotformFeedback({    
+          
+  type: 0,    
+  width: 700,    
+  height: 500,    
+  fontColor: "#FFFFFF",    
+  background: "#F59202",    
+  isCardForm: false,    
+  formId: "252474306808561"    
+  ,    
+      buttonText: "Feedback",    
+      buttonSide: "right",    
+      buttonAlign: "top",    
+      base: "https://form.jotform.com/",    
+    }).componentID;    
+  </script>      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>      <script>window.jotformEmbedHandler("iframe[id='" + componentID + "_iframe']", "https://form.jotform.com/")</script>    </body>  
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CIW</h3>
+                    <p>علامة تجارية تقنية تقدم حلولاً مبتكرة في جميع المجالات.</p>
+                </div>
+     
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">من نحن<li><a
+                       <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#products">منتجاتنا</a></li>
+                        <li><a href="#bots">بوتاتنا</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                    <body>
+                     
+                </div>
+                <div class="footer-section">
+                    <h3>العنوان</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</p>
+
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© CIW <span id="currentYear">2025</span>. جميع الحقوق محفوظة لشركتنا.</p>     
+            </div>
+        </div>
+    </footer>
     <script>
-        function downloadHTML() {
-            const element = document.createElement('a');
-            const file = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
-            element.href = URL.createObjectURL(file);
-            element.download = 'قائمة_أرقام_الهاتف.html';
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-        }
-
-        function exportToCSV() {
-            let csv = 'رقم الهاتف,الملاحظات\n';
-            const phoneItems = document.querySelectorAll('.phone-item');
+     document.addEventListener('DOMContentLoaded', function () {
             
-            phoneItems.forEach(item => {
-                const phoneNumber = item.querySelector('.phone-number').textContent;
-                const note = item.querySelector('.note-field').value || '';
-                csv += `"${phoneNumber}","${note}"\n`;
-            });
-
-            const element = document.createElement('a');
-            const file = new Blob(['\ufeff' + csv], {type: 'text/csv;charset=utf-8'});
-            element.href = URL.createObjectURL(file);
-            element.download = 'قائمة_أرقام_الهاتف.csv';
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-        }
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+        });
     </script>
 </body>
 </html>
